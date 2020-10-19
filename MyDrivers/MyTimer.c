@@ -14,6 +14,7 @@
 #include "MyTimer.h"
 #include "stm32f1xx_ll_bus.h" // Pour l'activation des horloges
 #include "stm32f1xx_ll_tim.h" 
+#include <math.h>
 
 
 // variable pointeur de fonction permettant de mémoriser le callback à appeler depuis
@@ -180,3 +181,72 @@ void TIM4_IRQHandler(void)
 	LL_TIM_ClearFlag_UPDATE(TIM4);
 	(*Ptr_ItFct_TIM4)();
 }	
+
+/*
+
+============ PWM =================================
+
+*/
+
+double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mode) {
+//
+// Cette fonction initialise la voie spécifiée du timer voulu en PWM.
+// La fréquence souhaitée est passée en paramètre.
+// La fonction renvoie un entier qui correspond à la résolution de la PWM pour
+// pouvoir ensuite régler les rapports cycliques.
+//
+// 3 Timer "general Purpose", TIM2, TIM3 et TIM4 + TIM1
+// Chacun d'entre eux dispose de 4 voies de sorties numérotées de 1 à 4
+// Mapping des IO:
+// TIM1_CH1 - PA08 TM2_CH1_ETR - PA0 TM3_CH1 - PA6 TIM4_CH1 - PB6
+// TIM1_CH1 - PA09 TM2_CH2 - PA1 TM3_CH2 - PA7 TIM4_CH2 - PB7
+// TIM1_CH1 - PA10 TM2_CH3 - PA2 TM3_CH3 - PB0 TIM4_CH3 - PB8
+// TIM1_CH4 – PA11 TM2_CH4 - PA3 TM3_CH4 - PB1 TIM4_CH4 - PB9
+	
+	int CH;
+	switch (Voie) {
+		case '1' : CH = LL_TIM_CHANNEL_CH1;
+		case '2' : CH = LL_TIM_CHANNEL_CH2;
+		case '3' : CH = LL_TIM_CHANNEL_CH3;
+		case '4' : CH = LL_TIM_CHANNEL_CH4;
+	}
+	
+	//int Arr = LL_TIM_GetAutoReload(Timer);
+	
+	int Psc = 0; 
+	int Ttimer = 1/Frequence_PWM_Khz;
+	int Thorloge = 8000; // Par défaut 8MHz ???
+	int Arr = (Ttimer / Thorloge) - 1;
+	MyTimer_Conf(TIM2, Arr, Psc);
+
+	double Res = log2(Arr); // A voir
+	
+	switch (Mode) {
+		case 'o' : LL_TIM_OC_SetMode(Timer, CH, LL_TIM_OCMODE_PWM1); // TIM2_CH2 : Mode PWM1 = active as long as TIMx_CNT<TIMx_CCRy else inactive 
+		case 'i' : ; // A faire pour l'INPUT
+	}
+	LL_TIM_CC_EnableChannel(TIM2, CH);
+	
+	return Res;
+	
+}
+
+void PWM_Set_CCR(TIM_TypeDef *Timer, char Voie, int Ccr) {
+	switch (Voie) {
+		case '1' : LL_TIM_OC_SetCompareCH1(Timer, Ccr);
+		case '2' : LL_TIM_OC_SetCompareCH2(Timer, Ccr);
+		case '3' : LL_TIM_OC_SetCompareCH3(Timer, Ccr);
+		case '4' : LL_TIM_OC_SetCompareCH4(Timer, Ccr);
+	}
+}
+
+int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie) {
+	int Ccr;
+	switch (Voie) {
+		case '1' : Ccr = LL_TIM_OC_GetCompareCH1(Timer);
+		case '2' : Ccr = LL_TIM_OC_GetCompareCH2(Timer);
+		case '3' : Ccr = LL_TIM_OC_GetCompareCH3(Timer);
+		case '4' : Ccr = LL_TIM_OC_GetCompareCH4(Timer);
+	}
+	return Ccr;
+}
