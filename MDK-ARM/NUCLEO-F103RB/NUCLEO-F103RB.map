@@ -7,32 +7,12 @@ Section Cross References
     main.o(i.SystemClock_Config) refers to stm32f1xx_ll_utils.o(i.LL_Init1msTick) for LL_Init1msTick
     main.o(i.SystemClock_Config) refers to stm32f1xx_ll_utils.o(i.LL_SetSystemCoreClock) for LL_SetSystemCoreClock
     main.o(i.main) refers to main.o(i.SystemClock_Config) for SystemClock_Config
-    main.o(i.main) refers to chrono.o(i.Chrono_Conf) for Chrono_Conf
-    main.o(i.main) refers to chrono.o(i.Chrono_Conf_usart) for Chrono_Conf_usart
-    main.o(i.main) refers to chrono.o(i.Chrono_Start) for Chrono_Start
-    main.o(i.main) refers to chrono.o(i.Chrono_Background) for Chrono_Background
-    chrono.o(i.Chrono_Background) refers to chrono.o(i.LL_GPIO_IsInputPinSet) for LL_GPIO_IsInputPinSet
-    chrono.o(i.Chrono_Background) refers to chrono.o(i.Chrono_Start) for Chrono_Start
-    chrono.o(i.Chrono_Background) refers to chrono.o(i.Chrono_Stop) for Chrono_Stop
-    chrono.o(i.Chrono_Background) refers to chrono.o(i.Chrono_Reset) for Chrono_Reset
-    chrono.o(i.Chrono_Background) refers to chrono.o(.data) for start
-    chrono.o(i.Chrono_Conf) refers to mytimer.o(i.MyTimer_Conf) for MyTimer_Conf
-    chrono.o(i.Chrono_Conf) refers to mytimer.o(i.MyTimer_IT_Conf) for MyTimer_IT_Conf
-    chrono.o(i.Chrono_Conf) refers to mytimer.o(i.MyTimer_IT_Enable) for MyTimer_IT_Enable
-    chrono.o(i.Chrono_Conf) refers to chrono.o(i.Chrono_Conf_io) for Chrono_Conf_io
-    chrono.o(i.Chrono_Conf) refers to chrono.o(.data) for Chrono_Time
-    chrono.o(i.Chrono_Conf) refers to chrono.o(i.Chrono_Task_10ms) for Chrono_Task_10ms
-    chrono.o(i.Chrono_Conf_io) refers to stm32f1xx_ll_gpio.o(i.LL_GPIO_StructInit) for LL_GPIO_StructInit
-    chrono.o(i.Chrono_Conf_io) refers to stm32f1xx_ll_gpio.o(i.LL_GPIO_Init) for LL_GPIO_Init
-    chrono.o(i.Chrono_Conf_usart) refers to chrono.o(.data) for USART
-    chrono.o(i.Chrono_Read) refers to chrono.o(.data) for Chrono_Time
-    chrono.o(i.Chrono_Reset) refers to mytimer.o(i.MyTimer_Stop) for MyTimer_Stop
-    chrono.o(i.Chrono_Reset) refers to chrono.o(.data) for Chrono_Timer
-    chrono.o(i.Chrono_Start) refers to mytimer.o(i.MyTimer_Start) for MyTimer_Start
-    chrono.o(i.Chrono_Start) refers to chrono.o(.data) for Chrono_Timer
-    chrono.o(i.Chrono_Stop) refers to mytimer.o(i.MyTimer_Stop) for MyTimer_Stop
-    chrono.o(i.Chrono_Stop) refers to chrono.o(.data) for Chrono_Timer
-    chrono.o(i.Chrono_Task_10ms) refers to chrono.o(.data) for Chrono_Time
+    main.o(i.reglerVoile) refers to accelerometre.o(i.getAngleRoulis) for getAngleRoulis
+    main.o(i.reglerVoile) refers to servomoteur.o(i.setAngleVoile) for setAngleVoile
+    main.o(i.reglerVoile) refers to girouette.o(i.getAngleVent) for getAngleVent
+    controlevoile.o(i.reglerVoile) refers to accelerometre.o(i.getAngleRoulis) for getAngleRoulis
+    controlevoile.o(i.reglerVoile) refers to servomoteur.o(i.setAngleVoile) for setAngleVoile
+    controlevoile.o(i.reglerVoile) refers to girouette.o(i.getAngleVent) for getAngleVent
     mytimer.o(i.MyTimer_Conf) refers to mytimer.o(i.LL_APB1_GRP1_EnableClock) for LL_APB1_GRP1_EnableClock
     mytimer.o(i.MyTimer_Conf) refers to stm32f1xx_ll_tim.o(i.LL_TIM_Init) for LL_TIM_Init
     mytimer.o(i.MyTimer_Conf) refers to mytimer.o(i.LL_TIM_DisableIT_UPDATE) for LL_TIM_DisableIT_UPDATE
@@ -140,89 +120,3 @@ Section Cross References
     entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(i.main) for main
     init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
 
-
-==============================================================================
-
-Removing Unused input sections from the image.
-
-    Removing main.o(.rev16_text), (4 bytes).
-    Removing main.o(.revsh_text), (4 bytes).
-    Removing main.o(.rrx_text), (6 bytes).
-    Removing chrono.o(.rev16_text), (4 bytes).
-    Removing chrono.o(.revsh_text), (4 bytes).
-    Removing chrono.o(.rrx_text), (6 bytes).
-    Removing chrono.o(i.Chrono_Read), (8 bytes).
-    Removing chrono.o(.constdata), (35 bytes).
-    Removing mytimer.o(.rev16_text), (4 bytes).
-    Removing mytimer.o(.revsh_text), (4 bytes).
-    Removing mytimer.o(.rrx_text), (6 bytes).
-    Removing mytimer.o(i.MyTimer_IT_Disable), (12 bytes).
-    Removing mytimer.o(.constdata), (35 bytes).
-    Removing stm32f1xx_ll_rcc.o(.rev16_text), (4 bytes).
-    Removing stm32f1xx_ll_rcc.o(.revsh_text), (4 bytes).
-    Removing stm32f1xx_ll_rcc.o(.rrx_text), (6 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.LL_RCC_DeInit), (152 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.LL_RCC_GetADCClockFreq), (124 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.LL_RCC_GetSystemClocksFreq), (36 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.LL_RCC_GetUSBClockFreq), (120 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.LL_RCC_PLL_IsReady), (16 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.RCC_GetHCLKClockFreq), (32 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.RCC_GetPCLK1ClockFreq), (36 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.RCC_GetPCLK2ClockFreq), (36 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.RCC_GetSystemClockFreq), (60 bytes).
-    Removing stm32f1xx_ll_rcc.o(i.RCC_PLL_GetFreqDomain_SYS), (88 bytes).
-    Removing stm32f1xx_ll_utils.o(.rev16_text), (4 bytes).
-    Removing stm32f1xx_ll_utils.o(.revsh_text), (4 bytes).
-    Removing stm32f1xx_ll_utils.o(.rrx_text), (6 bytes).
-    Removing stm32f1xx_ll_utils.o(i.LL_PLL_ConfigSystemClock_HSE), (260 bytes).
-    Removing stm32f1xx_ll_utils.o(i.LL_PLL_ConfigSystemClock_HSI), (104 bytes).
-    Removing stm32f1xx_ll_utils.o(i.LL_RCC_HSE_IsReady), (16 bytes).
-    Removing stm32f1xx_ll_utils.o(i.LL_RCC_HSI_IsReady), (16 bytes).
-    Removing stm32f1xx_ll_utils.o(i.LL_RCC_PLL_ConfigDomain_SYS), (28 bytes).
-    Removing stm32f1xx_ll_utils.o(i.LL_RCC_PLL_IsReady), (16 bytes).
-    Removing stm32f1xx_ll_utils.o(i.LL_mDelay), (40 bytes).
-    Removing stm32f1xx_ll_utils.o(i.UTILS_EnablePLLAndSwitchSystem), (416 bytes).
-    Removing stm32f1xx_ll_utils.o(i.UTILS_GetPLLOutputFrequency), (228 bytes).
-    Removing stm32f1xx_ll_utils.o(i.UTILS_PLL_IsBusy), (16 bytes).
-    Removing stm32f1xx_ll_utils.o(i.UTILS_SetFlashLatency), (80 bytes).
-    Removing stm32f1xx_ll_tim.o(.rev16_text), (4 bytes).
-    Removing stm32f1xx_ll_tim.o(.revsh_text), (4 bytes).
-    Removing stm32f1xx_ll_tim.o(.rrx_text), (6 bytes).
-    Removing stm32f1xx_ll_tim.o(i.IC1Config), (376 bytes).
-    Removing stm32f1xx_ll_tim.o(i.IC2Config), (376 bytes).
-    Removing stm32f1xx_ll_tim.o(i.IC3Config), (380 bytes).
-    Removing stm32f1xx_ll_tim.o(i.IC4Config), (380 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_APB1_GRP1_ForceReset), (16 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_APB1_GRP1_ReleaseReset), (16 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_BDTR_Init), (312 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_BDTR_StructInit), (18 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_DeInit), (192 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_ENCODER_Init), (688 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_ENCODER_StructInit), (36 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_HALLSENSOR_Init), (396 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_HALLSENSOR_StructInit), (12 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_IC_Init), (92 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_IC_StructInit), (18 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_OC_Init), (92 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_OC_SetCompareCH2), (4 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_OC_StructInit), (20 bytes).
-    Removing stm32f1xx_ll_tim.o(i.LL_TIM_StructInit), (18 bytes).
-    Removing stm32f1xx_ll_tim.o(i.OC1Config), (404 bytes).
-    Removing stm32f1xx_ll_tim.o(i.OC2Config), (404 bytes).
-    Removing stm32f1xx_ll_tim.o(i.OC3Config), (404 bytes).
-    Removing stm32f1xx_ll_tim.o(i.OC4Config), (372 bytes).
-    Removing stm32f1xx_ll_tim.o(.constdata), (35 bytes).
-    Removing stm32f1xx_ll_gpio.o(.rev16_text), (4 bytes).
-    Removing stm32f1xx_ll_gpio.o(.revsh_text), (4 bytes).
-    Removing stm32f1xx_ll_gpio.o(.rrx_text), (6 bytes).
-    Removing stm32f1xx_ll_gpio.o(i.LL_APB2_GRP1_ForceReset), (16 bytes).
-    Removing stm32f1xx_ll_gpio.o(i.LL_APB2_GRP1_ReleaseReset), (16 bytes).
-    Removing stm32f1xx_ll_gpio.o(i.LL_GPIO_DeInit), (212 bytes).
-    Removing system_stm32f1xx.o(.rev16_text), (4 bytes).
-    Removing system_stm32f1xx.o(.revsh_text), (4 bytes).
-    Removing system_stm32f1xx.o(.rrx_text), (6 bytes).
-    Removing system_stm32f1xx.o(i.SystemCoreClockUpdate), (164 bytes).
-    Removing system_stm32f1xx.o(.constdata), (24 bytes).
-    Removing startup_stm32f103xb.o(HEAP), (512 bytes).
-
-79 unused section(s) (total 8127 bytes) removed from the image.
