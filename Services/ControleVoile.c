@@ -1,9 +1,9 @@
 #include "ControleVoile.h"
 
-
-void timerConfVoile(){
-	
-	
+void confDriversVoile(){
+	//timer et GPIO du servo-moteur
+	timerConfServo();
+	GPIOConfServo();
 }
 
 void reglerVoile(){

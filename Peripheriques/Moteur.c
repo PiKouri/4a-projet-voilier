@@ -18,7 +18,7 @@ void Moteur_Conf() {
 	int Psc = 1000; 
 	int Ccr = Arr/30;
 	
-	MyTimer_Conf(TIM2, Arr, Psc)
+	MyTimer_Conf(TIM2, Arr, Psc);
 	
 	LL_TIM_OC_SetMode(TIM2, LL_TIM_CHANNEL_CH2, LL_TIM_OCMODE_PWM1);  // TIM2_CH2 : Mode PWM1 = active as long as TIMx_CNT<TIMx_CCRy else inactive
 	LL_TIM_OC_SetCompareCH2(TIM2, Ccr);

@@ -6,13 +6,23 @@ Section Cross References
 
     main.o(i.SystemClock_Config) refers to stm32f1xx_ll_utils.o(i.LL_Init1msTick) for LL_Init1msTick
     main.o(i.SystemClock_Config) refers to stm32f1xx_ll_utils.o(i.LL_SetSystemCoreClock) for LL_SetSystemCoreClock
+    main.o(i.confDriversVoile) refers to servomoteur.o(i.timerConfServo) for timerConfServo
+    main.o(i.confDriversVoile) refers to servomoteur.o(i.GPIOConfServo) for GPIOConfServo
     main.o(i.main) refers to main.o(i.SystemClock_Config) for SystemClock_Config
     main.o(i.reglerVoile) refers to accelerometre.o(i.getAngleRoulis) for getAngleRoulis
     main.o(i.reglerVoile) refers to servomoteur.o(i.setAngleVoile) for setAngleVoile
     main.o(i.reglerVoile) refers to girouette.o(i.getAngleVent) for getAngleVent
+    controlevoile.o(i.confDriversVoile) refers to servomoteur.o(i.timerConfServo) for timerConfServo
+    controlevoile.o(i.confDriversVoile) refers to servomoteur.o(i.GPIOConfServo) for GPIOConfServo
     controlevoile.o(i.reglerVoile) refers to accelerometre.o(i.getAngleRoulis) for getAngleRoulis
     controlevoile.o(i.reglerVoile) refers to servomoteur.o(i.setAngleVoile) for setAngleVoile
     controlevoile.o(i.reglerVoile) refers to girouette.o(i.getAngleVent) for getAngleVent
+    moteur.o(i.LL_TIM_OC_SetMode) refers to moteur.o(.constdata) for OFFSET_TAB_CCMRx
+    moteur.o(i.Moteur_Conf) refers to mytimer.o(i.MyTimer_Conf) for MyTimer_Conf
+    moteur.o(i.Moteur_Conf) refers to moteur.o(i.LL_TIM_OC_SetMode) for LL_TIM_OC_SetMode
+    servomoteur.o(i.GPIOConfServo) refers to mygpio.o(i.MyGPIO_pin_conf) for MyGPIO_pin_conf
+    servomoteur.o(i.timerConfServo) refers to mytimer.o(i.PWM_Init) for PWM_Init
+    mytimer.o(i.LL_TIM_OC_SetMode) refers to mytimer.o(.constdata) for OFFSET_TAB_CCMRx
     mytimer.o(i.MyTimer_Conf) refers to mytimer.o(i.LL_APB1_GRP1_EnableClock) for LL_APB1_GRP1_EnableClock
     mytimer.o(i.MyTimer_Conf) refers to stm32f1xx_ll_tim.o(i.LL_TIM_Init) for LL_TIM_Init
     mytimer.o(i.MyTimer_Conf) refers to mytimer.o(i.LL_TIM_DisableIT_UPDATE) for LL_TIM_DisableIT_UPDATE
@@ -21,6 +31,12 @@ Section Cross References
     mytimer.o(i.MyTimer_IT_Conf) refers to mytimer.o(.data) for Ptr_ItFct_TIM1
     mytimer.o(i.MyTimer_IT_Disable) refers to mytimer.o(i.LL_TIM_DisableIT_UPDATE) for LL_TIM_DisableIT_UPDATE
     mytimer.o(i.MyTimer_Stop) refers to mytimer.o(i.LL_TIM_DisableCounter) for LL_TIM_DisableCounter
+    mytimer.o(i.PWM_Init) refers to fdiv.o(.text) for __aeabi_fdiv
+    mytimer.o(i.PWM_Init) refers to ffixi.o(.text) for __aeabi_f2iz
+    mytimer.o(i.PWM_Init) refers to mytimer.o(i.MyTimer_Conf) for MyTimer_Conf
+    mytimer.o(i.PWM_Init) refers to dflti.o(.text) for __aeabi_i2d
+    mytimer.o(i.PWM_Init) refers to log2.o(i.log2) for log2
+    mytimer.o(i.PWM_Init) refers to mytimer.o(i.LL_TIM_OC_SetMode) for LL_TIM_OC_SetMode
     mytimer.o(i.TIM1_UP_IRQHandler) refers to mytimer.o(i.LL_TIM_ClearFlag_UPDATE) for LL_TIM_ClearFlag_UPDATE
     mytimer.o(i.TIM1_UP_IRQHandler) refers to mytimer.o(.data) for Ptr_ItFct_TIM1
     mytimer.o(i.TIM2_IRQHandler) refers to mytimer.o(i.LL_TIM_ClearFlag_UPDATE) for LL_TIM_ClearFlag_UPDATE
@@ -29,6 +45,8 @@ Section Cross References
     mytimer.o(i.TIM3_IRQHandler) refers to mytimer.o(.data) for Ptr_ItFct_TIM3
     mytimer.o(i.TIM4_IRQHandler) refers to mytimer.o(i.LL_TIM_ClearFlag_UPDATE) for LL_TIM_ClearFlag_UPDATE
     mytimer.o(i.TIM4_IRQHandler) refers to mytimer.o(.data) for Ptr_ItFct_TIM4
+    mygpio.o(i.MyGPIO_pin_conf) refers to mygpio.o(i.LL_GPIO_SetPinMode) for LL_GPIO_SetPinMode
+    mygpio.o(i.MyGPIO_pin_conf) refers to mygpio.o(i.LL_GPIO_SetPinOutputType) for LL_GPIO_SetPinOutputType
     stm32f1xx_ll_rcc.o(i.LL_RCC_DeInit) refers to stm32f1xx_ll_rcc.o(i.LL_RCC_PLL_IsReady) for LL_RCC_PLL_IsReady
     stm32f1xx_ll_rcc.o(i.LL_RCC_GetADCClockFreq) refers to main.o(i.assert_failed) for assert_failed
     stm32f1xx_ll_rcc.o(i.LL_RCC_GetADCClockFreq) refers to stm32f1xx_ll_rcc.o(i.RCC_GetSystemClockFreq) for RCC_GetSystemClockFreq
@@ -104,6 +122,27 @@ Section Cross References
     startup_stm32f103xb.o(RESET) refers to mytimer.o(i.TIM4_IRQHandler) for TIM4_IRQHandler
     startup_stm32f103xb.o(.text) refers to system_stm32f1xx.o(i.SystemInit) for SystemInit
     startup_stm32f103xb.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    log2.o(i.log2) refers (Special) to iusefp.o(.text) for __I$use$fp
+    log2.o(i.log2) refers to cdcmple.o(.text) for __aeabi_cdcmpeq
+    log2.o(i.log2) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    log2.o(i.log2) refers to errno.o(i.__set_errno) for __set_errno
+    log2.o(i.log2) refers to dunder.o(i.__mathlib_dbl_invalid) for __mathlib_dbl_invalid
+    log2.o(i.log2) refers to frexp.o(i.frexp) for frexp
+    log2.o(i.log2) refers to dscalb.o(.text) for __ARM_scalbn
+    log2.o(i.log2) refers to log.o(i.log) for log
+    log2.o(i.log2) refers to ddiv.o(.text) for __aeabi_ddiv
+    log2.o(i.log2) refers to dflti.o(.text) for __aeabi_i2d
+    log2.o(i.log2) refers to dadd.o(.text) for __aeabi_dadd
+    log2_x.o(i.__log2$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    log2_x.o(i.__log2$lsc) refers to cdcmple.o(.text) for __aeabi_cdcmpeq
+    log2_x.o(i.__log2$lsc) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    log2_x.o(i.__log2$lsc) refers to errno.o(i.__set_errno) for __set_errno
+    log2_x.o(i.__log2$lsc) refers to frexp.o(i.frexp) for frexp
+    log2_x.o(i.__log2$lsc) refers to dscalb.o(.text) for __ARM_scalbn
+    log2_x.o(i.__log2$lsc) refers to log.o(i.log) for log
+    log2_x.o(i.__log2$lsc) refers to ddiv.o(.text) for __aeabi_ddiv
+    log2_x.o(i.__log2$lsc) refers to dflti.o(.text) for __aeabi_i2d
+    log2_x.o(i.__log2$lsc) refers to dadd.o(.text) for __aeabi_dadd
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
@@ -111,6 +150,54 @@ Section Cross References
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    fdiv.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    fdiv.o(.text) refers to fepilogue.o(.text) for _float_round
+    dflti.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dflti.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    ffixi.o(.text) refers (Special) to iusefp.o(.text) for __I$use$fp
+    dunder.o(i.__mathlib_dbl_divzero) refers to ddiv.o(.text) for __aeabi_ddiv
+    dunder.o(i.__mathlib_dbl_infnan) refers to dscalb.o(.text) for __ARM_scalbn
+    dunder.o(i.__mathlib_dbl_infnan2) refers to dadd.o(.text) for __aeabi_dadd
+    dunder.o(i.__mathlib_dbl_invalid) refers to ddiv.o(.text) for __aeabi_ddiv
+    dunder.o(i.__mathlib_dbl_overflow) refers to dscalb.o(.text) for __ARM_scalbn
+    dunder.o(i.__mathlib_dbl_posinfnan) refers to dmul.o(.text) for __aeabi_dmul
+    dunder.o(i.__mathlib_dbl_underflow) refers to dscalb.o(.text) for __ARM_scalbn
+    frexp.o(i.__softfp_frexp) refers (Special) to iusefp.o(.text) for __I$use$fp
+    frexp.o(i.__softfp_frexp) refers to dscalb.o(.text) for __ARM_scalbn
+    frexp.o(i.frexp) refers (Special) to iusefp.o(.text) for __I$use$fp
+    frexp.o(i.frexp) refers to dscalb.o(.text) for __ARM_scalbn
+    log.o(i.__softfp_log) refers (Special) to iusefp.o(.text) for __I$use$fp
+    log.o(i.__softfp_log) refers to log.o(i.log) for log
+    log.o(i.log) refers (Special) to iusefp.o(.text) for __I$use$fp
+    log.o(i.log) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    log.o(i.log) refers to errno.o(i.__set_errno) for __set_errno
+    log.o(i.log) refers to dunder.o(i.__mathlib_dbl_invalid) for __mathlib_dbl_invalid
+    log.o(i.log) refers to dunder.o(i.__mathlib_dbl_divzero) for __mathlib_dbl_divzero
+    log.o(i.log) refers to dscalb.o(.text) for __ARM_scalbn
+    log.o(i.log) refers to dadd.o(.text) for __aeabi_dsub
+    log.o(i.log) refers to cdcmple.o(.text) for __aeabi_cdcmpeq
+    log.o(i.log) refers to dflti.o(.text) for __aeabi_i2d
+    log.o(i.log) refers to dmul.o(.text) for __aeabi_dmul
+    log.o(i.log) refers to ddiv.o(.text) for __aeabi_ddiv
+    log.o(i.log) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    log.o(i.log) refers to qnan.o(.constdata) for __mathlib_zero
+    log.o(i.log) refers to log.o(.constdata) for .constdata
+    log.o(.constdata) refers (Special) to iusefp.o(.text) for __I$use$fp
+    log_x.o(i.____softfp_log$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    log_x.o(i.____softfp_log$lsc) refers to log_x.o(i.__log$lsc) for __log$lsc
+    log_x.o(i.__log$lsc) refers (Special) to iusefp.o(.text) for __I$use$fp
+    log_x.o(i.__log$lsc) refers to dunder.o(i.__mathlib_dbl_infnan) for __mathlib_dbl_infnan
+    log_x.o(i.__log$lsc) refers to errno.o(i.__set_errno) for __set_errno
+    log_x.o(i.__log$lsc) refers to dscalb.o(.text) for __ARM_scalbn
+    log_x.o(i.__log$lsc) refers to dadd.o(.text) for __aeabi_dsub
+    log_x.o(i.__log$lsc) refers to cdcmple.o(.text) for __aeabi_cdcmpeq
+    log_x.o(i.__log$lsc) refers to dflti.o(.text) for __aeabi_i2d
+    log_x.o(i.__log$lsc) refers to dmul.o(.text) for __aeabi_dmul
+    log_x.o(i.__log$lsc) refers to ddiv.o(.text) for __aeabi_ddiv
+    log_x.o(i.__log$lsc) refers to poly.o(i.__kernel_poly) for __kernel_poly
+    log_x.o(i.__log$lsc) refers to qnan.o(.constdata) for __mathlib_zero
+    log_x.o(i.__log$lsc) refers to log_x.o(.constdata) for .constdata
+    log_x.o(.constdata) refers (Special) to iusefp.o(.text) for __I$use$fp
     entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
     entry2.o(.ARM.Collect$$$$00002712) refers to startup_stm32f103xb.o(STACK) for __initial_sp
     entry2.o(__vectab_stack_and_reset_area) refers to startup_stm32f103xb.o(STACK) for __initial_sp
@@ -118,5 +205,19 @@ Section Cross References
     entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
     entry9a.o(.ARM.Collect$$$$0000000B) refers to main.o(i.main) for main
     entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(i.main) for main
+    errno.o(i.__aeabi_errno_addr) refers to errno.o(.data) for .data
+    errno.o(i.__read_errno) refers to errno.o(.data) for .data
+    errno.o(i.__set_errno) refers to errno.o(.data) for .data
+    depilogue.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    depilogue.o(.text) refers to llushr.o(.text) for __aeabi_llsr
+    dadd.o(.text) refers to llshl.o(.text) for __aeabi_llsl
+    dadd.o(.text) refers to llsshr.o(.text) for __aeabi_lasr
+    dadd.o(.text) refers to depilogue.o(.text) for _double_epilogue
+    ddiv.o(.text) refers to depilogue.o(.text) for _double_round
+    poly.o(i.__kernel_poly) refers (Special) to iusefp.o(.text) for __I$use$fp
+    poly.o(i.__kernel_poly) refers to dmul.o(.text) for __aeabi_dmul
+    poly.o(i.__kernel_poly) refers to dadd.o(.text) for __aeabi_dadd
+    qnan.o(.constdata) refers (Special) to iusefp.o(.text) for __I$use$fp
     init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+    dmul.o(.text) refers to depilogue.o(.text) for _double_epilogue
 

@@ -42,7 +42,6 @@ int main(void)
   SystemClock_Config();
 
   /* Add your application code here */
-
   
   /* Infinite loop */
   while (1)

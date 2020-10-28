@@ -10,3 +10,4 @@ nucleo-f103rb\mytimer.o: ..\Inc\system_stm32f1xx.h
 nucleo-f103rb\mytimer.o: ..\LLDrivers\inc\stm32f1xx_ll_bus.h
 nucleo-f103rb\mytimer.o: ..\Inc\stm32f1xx.h
 nucleo-f103rb\mytimer.o: ..\LLDrivers\inc\stm32f1xx_ll_tim.h
+nucleo-f103rb\mytimer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

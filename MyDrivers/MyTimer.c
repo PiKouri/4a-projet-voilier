@@ -203,6 +203,8 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 // TIM1_CH1 - PA10 TM2_CH3 - PA2 TM3_CH3 - PB0 TIM4_CH3 - PB8
 // TIM1_CH4 – PA11 TM2_CH4 - PA3 TM3_CH4 - PB1 TIM4_CH4 - PB9
 	
+	//Il n'y a pas de break; dans les switch, c'est normal ? - Marianne
+	
 	int CH;
 	switch (Voie) {
 		case '1' : CH = LL_TIM_CHANNEL_CH1;
