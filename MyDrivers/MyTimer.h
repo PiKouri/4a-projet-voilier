@@ -97,3 +97,13 @@ void PWM_Set_CCR(TIM_TypeDef *Timer, char Voie, int Ccr);
   */
 int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie);
 #endif
+
+/**
+	* @brief  Initialise le Timer en mode encodeur avec les voies spécifiées
+  * @note   
+	* @param  TIM_TypeDef Timer : indique le timer à utiliser par le chronomètre, TIM1, TIM2, TIM3 ou TIM4
+						char Voie1, Voie2 : '1', '2', '3', ou '4' 
+						??? index : index pour la remise à zéro
+	* @retval None
+  */
+void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2 /*, ??? index*/);

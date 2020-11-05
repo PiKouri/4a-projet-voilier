@@ -252,3 +252,20 @@ int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie) {
 	}
 	return Ccr;
 }
+
+/*
+
+============ Mode Encodeur ================================= 
+/!\ EN COURS, A TERMINER
+
+*/
+
+void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2 /*, ??? index*/){
+	
+	//Initialisation de la structure auxilliaire
+		LL_TIM_ENCODER_InitTypeDef *structInit;
+		LL_TIM_ENCODER_StructInit(structInit);
+	
+	//Paramétrage de la structure auxilliaire
+	structInit->EncoderMode = LL_TIM_ENCODERMODE_X4_TI12;
+}
