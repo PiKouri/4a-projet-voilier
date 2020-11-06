@@ -6,7 +6,7 @@ int resPWM;  //Pb ici : la résolution est tjr = 0, voir avec JR et Clémentine
 int CCR_value; //A passer en local dès que pb resPWM résolu
 
 void timerConfServo(){
-	resPWM=PWM_Init(TIM4, '3', 1, 'o');
+	resPWM=PWM_Init(TIM4, '3', 1, 'o', ' ');
 }
 
 void GPIOConfServo(){

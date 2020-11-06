@@ -15,5 +15,5 @@ void initAngleGirouette(){
 }
 
 int getAngleVent () {
-	return 0;
+	
 }
