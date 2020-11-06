@@ -268,4 +268,7 @@ void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2 /*, ??? index*/
 	
 	//Paramétrage de la structure auxilliaire
 	structInit->EncoderMode = LL_TIM_ENCODERMODE_X4_TI12;
+	
+	//Application au timer
+	LL_TIM_ENCODER_Init(TIM3, structInit);
 }
