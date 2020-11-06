@@ -202,8 +202,7 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 // TIM1_CH1 - PA09 TM2_CH2 - PA1 TM3_CH2 - PA7 TIM4_CH2 - PB7
 // TIM1_CH1 - PA10 TM2_CH3 - PA2 TM3_CH3 - PB0 TIM4_CH3 - PB8
 // TIM1_CH4 – PA11 TM2_CH4 - PA3 TM3_CH4 - PB1 TIM4_CH4 - PB9
-	
-	//Il n'y a pas de break; dans les switch, c'est normal ? - Marianne
+
 	
 	int CH;
 	switch (Voie) {
@@ -256,19 +255,28 @@ int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie) {
 /*
 
 ============ Mode Encodeur ================================= 
-/!\ EN COURS, A TERMINER
-
+Réglages page 392
+/!\ en cours, à finir
 */
 
-void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2 /*, ??? index*/){
+void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2){
+	//Mode encodeur x4 : SMS = 011
+	Timer->SMCR&=~(0x7);
+	Timer->SMCR|=0x3;
 	
-	//Initialisation de la structure auxilliaire
-		LL_TIM_ENCODER_InitTypeDef *structInit;
-		LL_TIM_ENCODER_StructInit(structInit);
+	//Réglages CHA
+		//CC1S=01
+	Timer->CCMR1&=~(0x2);
+	Timer->CCMR1|=0x1;
+		//Réglages dans CCER
 	
-	//Paramétrage de la structure auxilliaire
-	structInit->EncoderMode = LL_TIM_ENCODERMODE_X4_TI12;
 	
-	//Application au timer
-	LL_TIM_ENCODER_Init(TIM3, structInit);
+	//Réglages CHB
+	//CC2S=01
+	Timer->CCMR1&=~(0x20);
+	Timer->CCMR1|=0x10;
+	
+	//Activation compteur : CEN=1
+	Timer->CR1|=0x1;
+	
 }
