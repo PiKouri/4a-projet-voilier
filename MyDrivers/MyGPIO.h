@@ -1,7 +1,7 @@
 /*
 Driver pour GPIO A à D du STM32F103RB
-/!\ N'a pas encore été testé (pb de multiple defs à la compilation)
 */
+//Note : testée au simulateur, fonctionnelle
 
 #include "stm32f1xx_ll_gpio.h"
 
@@ -15,4 +15,4 @@ Driver pour GPIO A à D du STM32F103RB
   * @retval None
   */
 	void MyGPIO_pin_conf(GPIO_TypeDef* GPIOx, int pin, char mode);
-	
+		

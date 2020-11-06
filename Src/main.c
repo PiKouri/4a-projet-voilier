@@ -20,9 +20,9 @@
 #include "stm32f1xx_ll_utils.h"   // utile dans la fonction SystemClock_Config
 #include "stm32f1xx_ll_system.h" // utile dans la fonction SystemClock_Config
 
-#include "Communication.c"
-#include "ControleMoteur.c"
-#include "ControleVoile.c"
+#include "Communication.h"
+#include "ControleMoteur.h"
+#include "ControleVoile.h"
 
 
 void  SystemClock_Config(void);
@@ -42,7 +42,7 @@ int main(void)
   SystemClock_Config();
 
   /* Add your application code here */
-  
+	
   /* Infinite loop */
   while (1)
   {
