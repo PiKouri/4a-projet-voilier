@@ -4,7 +4,7 @@
 int resPWM;
 
 void timerConfServo(){
-	resPWM=PWM_Init(TIM4, '3', 1, 'o');
+	resPWM=PWM_Init(TIM4, '3', 1, 'o', ' ');
 }
 
 void GPIOConfServo(){

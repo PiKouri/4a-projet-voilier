@@ -7,5 +7,5 @@ void GPIOConfGirouette(){
 }
 
 int getAngleVent () {
-	return 0;
+	
 }

@@ -188,7 +188,7 @@ void TIM4_IRQHandler(void)
 
 */
 
-double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mode) {
+double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mode, char Polarite) {
 //
 // Cette fonction initialise la voie spécifiée du timer voulu en PWM.
 // La fréquence souhaitée est passée en paramètre.
@@ -202,8 +202,6 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 // TIM1_CH1 - PA09 TM2_CH2 - PA1 TM3_CH2 - PA7 TIM4_CH2 - PB7
 // TIM1_CH1 - PA10 TM2_CH3 - PA2 TM3_CH3 - PB0 TIM4_CH3 - PB8
 // TIM1_CH4 – PA11 TM2_CH4 - PA3 TM3_CH4 - PB1 TIM4_CH4 - PB9
-	
-	//Il n'y a pas de break; dans les switch, c'est normal ? - Marianne
 	
 	int CH;
 	switch (Voie) {
@@ -223,9 +221,19 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 
 	double Res = log2(Arr); // A voir
 	
+	double pol;
 	switch (Mode) {
 		case 'o' : LL_TIM_OC_SetMode(Timer, CH, LL_TIM_OCMODE_PWM1); break; // TIM2_CH2 : Mode PWM1 = active as long as TIMx_CNT<TIMx_CCRy else inactive 
-		case 'i' : ; break; // A faire pour l'INPUT
+		case 'i' : 						// INPUT plutot utiliser registres 
+			switch (Polarite) {
+				case 'r' : pol = LL_TIM_IC_POLARITY_RISING;break;
+				case 'f' : pol = LL_TIM_IC_POLARITY_FALLING;break;
+			}
+			LL_TIM_IC_SetActiveInput(Timer, CH, LL_TIM_ACTIVEINPUT_TRC);  // A VERIFIER
+			LL_TIM_IC_SetFilter(Timer, CH, LL_TIM_IC_FILTER_FDIV1);	// A verifier
+			LL_TIM_IC_SetPrescaler (Timer, CH, LL_TIM_ICPSC_DIV1); // A verifier
+			LL_TIM_IC_SetPolarity (TIM4, LL_TIM_CHANNEL_CH1, pol);
+			break;
 	}
 	LL_TIM_CC_EnableChannel(TIM2, CH);
 	

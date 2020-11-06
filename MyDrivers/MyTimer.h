@@ -76,14 +76,16 @@ void MyTimer_IT_Disable(TIM_TypeDef * Timer);
 						char Mode : 'o' ou 'i' pour Output ou Input
 	* @retval double res
   */
-double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mode);
+double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mode, char Polarite);
 
 /**
 	* @brief  Change la valeur de CCR de la voie donnée (pour un timer donné)
   * @note   
 	* @param  TIM_TypeDef Timer : indique le timer à utiliser par le chronomètre, TIM1, TIM2, TIM3 ou TIM4
 						char Voie : '1', '2', '3', ou '4' 
-						int Ccr : valeur de CCR à assigner
+						float Frequence_PWM_Khz : frequence voulue en KHz
+						char Mode : 'i' ou 'o' / input ou ouput
+						char Polarite : 'r' ou 'f' = RISING ou FALLING pour PWM Input
   * @retval None
   */
 void PWM_Set_CCR(TIM_TypeDef *Timer, char Voie, int Ccr);
