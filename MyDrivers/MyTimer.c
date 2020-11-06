@@ -269,7 +269,6 @@ int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie) {
 
 ============ Mode Encodeur ================================= 
 Réglages page 392
-/!\ en cours, à finir
 */
 
 void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2){
@@ -281,12 +280,23 @@ void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2){
 		//CC1S=01
 	Timer->CCMR1&=~(0x2);
 	Timer->CCMR1|=0x1;
-		//Réglages dans CCER
+		//CC1P=0
+	Timer->CCER&=~(1<<1);
+		//IC1F=0000
+	Timer->CCMR1&=~(0xF0);
+	//CC1NP????
+	
 	
 	//Réglages CHB
-	//CC2S=01
+		//CC2S=01
 	Timer->CCMR1&=~(0x20);
 	Timer->CCMR1|=0x10;
+		//CC2P = 0
+	Timer->CCER&=~(1<<5);
+		//IC2F=0000
+	Timer->CCMR1&=~(0xF000);
+	 //CC2NP???
+	
 	
 	//Activation compteur : CEN=1
 	Timer->CR1|=0x1;
