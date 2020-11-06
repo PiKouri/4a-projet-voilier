@@ -207,10 +207,10 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 	
 	int CH;
 	switch (Voie) {
-		case '1' : CH = LL_TIM_CHANNEL_CH1;
-		case '2' : CH = LL_TIM_CHANNEL_CH2;
-		case '3' : CH = LL_TIM_CHANNEL_CH3;
-		case '4' : CH = LL_TIM_CHANNEL_CH4;
+		case '1' : CH = LL_TIM_CHANNEL_CH1; break;
+		case '2' : CH = LL_TIM_CHANNEL_CH2; break;
+		case '3' : CH = LL_TIM_CHANNEL_CH3; break;
+		case '4' : CH = LL_TIM_CHANNEL_CH4; break;
 	}
 	
 	//int Arr = LL_TIM_GetAutoReload(Timer);
@@ -224,8 +224,8 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 	double Res = log2(Arr); // A voir
 	
 	switch (Mode) {
-		case 'o' : LL_TIM_OC_SetMode(Timer, CH, LL_TIM_OCMODE_PWM1); // TIM2_CH2 : Mode PWM1 = active as long as TIMx_CNT<TIMx_CCRy else inactive 
-		case 'i' : ; // A faire pour l'INPUT
+		case 'o' : LL_TIM_OC_SetMode(Timer, CH, LL_TIM_OCMODE_PWM1); break; // TIM2_CH2 : Mode PWM1 = active as long as TIMx_CNT<TIMx_CCRy else inactive 
+		case 'i' : ; break; // A faire pour l'INPUT
 	}
 	LL_TIM_CC_EnableChannel(TIM2, CH);
 	
@@ -235,20 +235,20 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 
 void PWM_Set_CCR(TIM_TypeDef *Timer, char Voie, int Ccr) {
 	switch (Voie) {
-		case '1' : LL_TIM_OC_SetCompareCH1(Timer, Ccr);
-		case '2' : LL_TIM_OC_SetCompareCH2(Timer, Ccr);
-		case '3' : LL_TIM_OC_SetCompareCH3(Timer, Ccr);
-		case '4' : LL_TIM_OC_SetCompareCH4(Timer, Ccr);
+		case '1' : LL_TIM_OC_SetCompareCH1(Timer, Ccr); break;
+		case '2' : LL_TIM_OC_SetCompareCH2(Timer, Ccr); break;
+		case '3' : LL_TIM_OC_SetCompareCH3(Timer, Ccr); break;
+		case '4' : LL_TIM_OC_SetCompareCH4(Timer, Ccr); break;
 	}
 }
 
 int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie) {
 	int Ccr;
 	switch (Voie) {
-		case '1' : Ccr = LL_TIM_OC_GetCompareCH1(Timer);
-		case '2' : Ccr = LL_TIM_OC_GetCompareCH2(Timer);
-		case '3' : Ccr = LL_TIM_OC_GetCompareCH3(Timer);
-		case '4' : Ccr = LL_TIM_OC_GetCompareCH4(Timer);
+		case '1' : Ccr = LL_TIM_OC_GetCompareCH1(Timer); break;
+		case '2' : Ccr = LL_TIM_OC_GetCompareCH2(Timer); break;
+		case '3' : Ccr = LL_TIM_OC_GetCompareCH3(Timer); break;
+		case '4' : Ccr = LL_TIM_OC_GetCompareCH4(Timer); break;
 	}
 	return Ccr;
 }
