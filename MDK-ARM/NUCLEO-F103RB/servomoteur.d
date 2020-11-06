@@ -11,3 +11,4 @@ nucleo-f103rb\servomoteur.o: ..\Inc\system_stm32f1xx.h
 nucleo-f103rb\servomoteur.o: ..\MyDrivers\MyGPIO.h
 nucleo-f103rb\servomoteur.o: ..\LLDrivers\inc\stm32f1xx_ll_gpio.h
 nucleo-f103rb\servomoteur.o: ..\Inc\stm32f1xx.h
+nucleo-f103rb\servomoteur.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

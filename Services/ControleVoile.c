@@ -4,6 +4,8 @@ void confDriversVoile(){
 	//timer et GPIO du servo-moteur
 	timerConfServo();
 	GPIOConfServo();
+	timerConfGirouette();
+	GPIOConfGirouette();
 }
 
 void reglerVoile(){
