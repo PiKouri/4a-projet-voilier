@@ -7,6 +7,10 @@ int CCR_value; //A passer en local dès que pb resPWM résolu
 
 void timerConfServo(){
 	resPWM=PWM_Init(TIM4, '3', 1, 'o', ' ');
+	MyTimer_Start(TIM4);
+	
+	//On règle l'angle de la voile à 0 avant tout
+	PWM_Set_CCR(TIM4, '3', 0);
 }
 
 void GPIOConfServo(){

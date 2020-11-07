@@ -27,18 +27,11 @@ Project File Date:  10/28/2020
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Simulateur'
+compiling Communication.c...
 compiling Batterie.c...
 ..\Peripheriques\Batterie.c(1): warning:  #1-D: last line of file ends without a newline
   #include "Batterie.h"
 ..\Peripheriques\Batterie.c: 1 warning, 0 errors
-compiling Communication.c...
-..\Services\Communication.c(1): warning:  #1-D: last line of file ends without a newline
-  #include "Communication.h"
-..\Services\Communication.c: 1 warning, 0 errors
-compiling ControleMoteur.c...
-..\Services\ControleMoteur.c(1): warning:  #1-D: last line of file ends without a newline
-  #include "ControleMoteur.h"
-..\Services\ControleMoteur.c: 1 warning, 0 errors
 compiling EmetteurRF.c...
 ..\Peripheriques\EmetteurRF.c(1): warning:  #1-D: last line of file ends without a newline
   #include "EmetteurRF.h"
@@ -49,52 +42,30 @@ compiling Accelerometre.c...
 ..\Peripheriques\Accelerometre.c(6): warning:  #940-D: missing return statement at end of non-void function "getAngleRoulis" 
   }
 ..\Peripheriques\Accelerometre.c: 2 warnings, 0 errors
-compiling RecepteurRF.c...
-..\Peripheriques\RecepteurRF.c(1): warning:  #1-D: last line of file ends without a newline
-  #include "RecepteurRF.h"
-..\Peripheriques\RecepteurRF.c: 1 warning, 0 errors
-compiling Girouette.c...
-..\MyDrivers\MyGPIO.h(18): warning:  #1-D: last line of file ends without a newline
-  		
-..\Peripheriques\Girouette.c: 1 warning, 0 errors
-compiling ServoMoteur.c...
-..\MyDrivers\MyGPIO.h(18): warning:  #1-D: last line of file ends without a newline
-  		
-..\Peripheriques\ServoMoteur.c: 1 warning, 0 errors
+compiling ControleMoteur.c...
 compiling ControleVoile.c...
-..\MyDrivers\MyGPIO.h(18): warning:  #1-D: last line of file ends without a newline
-  		
-..\MyDrivers\MyGPIO.h(18): warning:  #1-D: last line of file ends without a newline
-  		
-..\Services\ControleVoile.c: 2 warnings, 0 errors
-compiling MyGPIO.c...
-..\MyDrivers\MyGPIO.h(18): warning:  #1-D: last line of file ends without a newline
-  		
-..\MyDrivers\MyGPIO.c: 1 warning, 0 errors
-compiling MyTimer.c...
+compiling Girouette.c...
+compiling ServoMoteur.c...
 compiling main.c...
-..\MyDrivers\MyGPIO.h(18): warning:  #1-D: last line of file ends without a newline
-  		
-..\MyDrivers\MyGPIO.h(18): warning:  #1-D: last line of file ends without a newline
-  		
-../Src/main.c: 2 warnings, 0 errors
 compiling Moteur.c...
-..\Peripheriques\Moteur.h(17): warning:  #1-D: last line of file ends without a newline
-  void Moteur_Conf() ;
-..\Peripheriques\Moteur.h(17): warning:  #1295-D: Deprecated declaration Moteur_Conf - give arg types
-  void Moteur_Conf() ;
-..\Peripheriques\Moteur.c(28): warning:  #1-D: last line of file ends without a newline
+compiling RecepteurRF.c...
+..\Peripheriques\RecepteurRF.c(42): warning:  #1-D: last line of file ends without a newline
   }
-..\Peripheriques\Moteur.c: 3 warnings, 0 errors
-assembling startup_stm32f103xb.s...
+..\Peripheriques\RecepteurRF.c: 1 warning, 0 errors
+compiling MyGPIO.c...
 compiling system_stm32f1xx.c...
-compiling stm32f1xx_ll_utils.c...
+compiling MyTimer.c...
+..\MyDrivers\MyTimer.c(319): warning:  #1-D: last line of file ends without a newline
+  	
+..\MyDrivers\MyTimer.c: 1 warning, 0 errors
+assembling startup_stm32f103xb.s...
 compiling stm32f1xx_ll_rcc.c...
+compiling stm32f1xx_ll_utils.c...
 compiling stm32f1xx_ll_gpio.c...
 compiling stm32f1xx_ll_tim.c...
 linking...
-Program Size: Code=7692 RO-data=508 RW-data=32 ZI-data=1024  
-"NUCLEO-F103RB\NUCLEO-F103RB.axf" - 0 Error(s), 17 Warning(s).
+Program Size: Code=604 RO-data=268 RW-data=20 ZI-data=1028  
+"NUCLEO-F103RB\NUCLEO-F103RB.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -117,7 +88,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.3.0
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>
