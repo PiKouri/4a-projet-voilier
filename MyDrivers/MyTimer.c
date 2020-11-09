@@ -272,9 +272,9 @@ void EncoderMode_Init(TIM_TypeDef *Timer, int Arr, int Psc){
 	
 	MyTimer_Conf(Timer, Arr, Psc);
 	
-	//Mode encodeur x4 : SMS = 011
+	//Mode encodeur x4 : SMS = 001
 	Timer->SMCR&=~(0x7);
-	Timer->SMCR|=0x3;
+	Timer->SMCR|=0x1;
 	
 	//Réglages CHA
 		//CC1S=01

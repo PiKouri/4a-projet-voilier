@@ -1,8 +1,7 @@
 #include "Girouette.h"
 
 void timerConfGirouette(){
-	// PSC=3 pour une précision au degré et non au quart de degré, à vérifier
-	EncoderMode_Init(TIM3, 359, 3);
+	EncoderMode_Init(TIM3, 359, 0);
 }
 
 void GPIOConfGirouette(){
