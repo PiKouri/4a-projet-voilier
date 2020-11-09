@@ -8,6 +8,7 @@ nucleo-f103rb\moteur.o: C:\Users\Marianne\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.
 nucleo-f103rb\moteur.o: C:\Users\Marianne\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h
 nucleo-f103rb\moteur.o: ..\Inc\system_stm32f1xx.h
 nucleo-f103rb\moteur.o: ..\MyDrivers\MyTimer.h
+nucleo-f103rb\moteur.o: ..\MyDrivers\MyGPIO.h
 nucleo-f103rb\moteur.o: ..\LLDrivers\inc\stm32f1xx_ll_gpio.h
 nucleo-f103rb\moteur.o: ..\Inc\stm32f1xx.h
 nucleo-f103rb\moteur.o: ..\LLDrivers\inc\stm32f1xx_ll_tim.h

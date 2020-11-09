@@ -16,9 +16,7 @@
   *
   ******************************************************************************
   */
-#include "stm32f1xx_ll_rcc.h" // utile dans la fonction SystemClock_Config
-#include "stm32f1xx_ll_utils.h"   // utile dans la fonction SystemClock_Config
-#include "stm32f1xx_ll_system.h" // utile dans la fonction SystemClock_Config
+
 
 #include "Communication.h"
 #include "ControleMoteur.h"

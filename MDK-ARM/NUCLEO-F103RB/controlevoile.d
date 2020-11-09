@@ -11,6 +11,10 @@ nucleo-f103rb\controlevoile.o: C:\Users\Marianne\AppData\Local\Arm\Packs\ARM\CMS
 nucleo-f103rb\controlevoile.o: C:\Users\Marianne\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h
 nucleo-f103rb\controlevoile.o: C:\Users\Marianne\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h
 nucleo-f103rb\controlevoile.o: ..\Inc\system_stm32f1xx.h
+nucleo-f103rb\controlevoile.o: ..\MyDrivers\MyADC.h
+nucleo-f103rb\controlevoile.o: ..\LLDrivers\inc\stm32f1xx_ll_rcc.h
+nucleo-f103rb\controlevoile.o: ..\LLDrivers\inc\stm32f1xx_ll_utils.h
+nucleo-f103rb\controlevoile.o: ..\LLDrivers\inc\stm32f1xx_ll_system.h
 nucleo-f103rb\controlevoile.o: ..\Peripheriques\Girouette.h
 nucleo-f103rb\controlevoile.o: ..\MyDrivers\MyTimer.h
 nucleo-f103rb\controlevoile.o: ..\MyDrivers\MyGPIO.h
