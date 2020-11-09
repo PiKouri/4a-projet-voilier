@@ -215,9 +215,10 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 	//int Arr = LL_TIM_GetAutoReload(Timer);
 	
 	int Psc = 0; 
-	int Ttimer = 1/Frequence_PWM_Khz;
-	int Thorloge = 8000; // Par défaut 8MHz ???
-	int Arr = (Ttimer / Thorloge) - 1;
+	double Ttimer = 1/Frequence_PWM_Khz;
+	/*double Thorloge = 1/8000; // Par défaut 8MHz ???
+	double Arr = (Ttimer / Thorloge) - 1;*/
+	double Arr = (Ttimer *8000) -1;
 	MyTimer_Conf(TIM2, Arr, Psc);
 
 	double Res = log2(Arr); // A voir
@@ -230,9 +231,9 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 				case 'r' : pol = LL_TIM_IC_POLARITY_RISING;break;
 				case 'f' : pol = LL_TIM_IC_POLARITY_FALLING;break;
 			}
-			LL_TIM_IC_SetActiveInput(Timer, CH, LL_TIM_ACTIVEINPUT_TRC);  // A VERIFIER
+			/*LL_TIM_IC_SetActiveInput(Timer, CH, LL_TIM_ACTIVEINPUT_TRC);  // A VERIFIER
 			LL_TIM_IC_SetFilter(Timer, CH, LL_TIM_IC_FILTER_FDIV1);	// A verifier
-			LL_TIM_IC_SetPrescaler (Timer, CH, LL_TIM_ICPSC_DIV1); // A verifier
+			LL_TIM_IC_SetPrescaler (Timer, CH, LL_TIM_ICPSC_DIV1); // A verifier*/
 			LL_TIM_IC_SetPolarity (TIM4, LL_TIM_CHANNEL_CH1, pol);
 			break;
 	}
