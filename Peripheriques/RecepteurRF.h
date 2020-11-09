@@ -32,7 +32,7 @@ double RecepteurRF_Get_Duty_Cycle(void) ;
 	* @param  None
   * @retval vitesse (%)
   */
-double RecepteurRF_Get_Vitesse(void) ;
+double getVitesse(void) ;
 
 /**
 	* @brief  Récupère les informations (cap) de la télécommande. 
@@ -40,5 +40,4 @@ double RecepteurRF_Get_Vitesse(void) ;
 	* @param  None
   * @retval Cap
   */
-char RecepteurRF_Get_Cap(void) ;
-
+char getCap(void) ;

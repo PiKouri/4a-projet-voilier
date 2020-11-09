@@ -7,9 +7,12 @@ void confDriversMoteur(void) {
 	RecepteurRF_Conf();
 };
 
-void manageRecepteurRF_Moteur(void) {
-	double vitesse = RecepteurRF_Get_Vitesse() ;
-	char cap = RecepteurRF_Get_Cap();
-	Set_Vitesse(vitesse);
-	Set_Cap(cap);
+void reglerVitesseMot(void) {
+	double vitesse = getVitesse() ;
+	setVitesse(vitesse);
+};
+
+void reglerCap(void) {
+	char cap = getCap();
+	setCap(cap);
 };
