@@ -5,6 +5,9 @@
 void timerConfGirouette(void);
 void GPIOConfGirouette(void);
 
+//Initialisation de l'angle de la girouette (/!\ fonction scrutative, bloquante)
+void initAngleGirouette(void);
+
 //Retourne l'angle actuel du vent
 int getAngleVent(void);
 

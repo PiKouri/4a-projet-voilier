@@ -101,11 +101,26 @@ int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie);
 #endif
 
 /**
-	* @brief  Initialise le Timer en mode encodeur avec les voies spécifiées
+	* @brief  Initialise un timer en mode encodeur x4 avec les voies 1 et 2 du timer
   * @note   
 	* @param  TIM_TypeDef Timer : indique le timer à utiliser par le chronomètre, TIM1, TIM2, TIM3 ou TIM4
-						char Voie1, Voie2 : '1', '2', '3', ou '4' 
-						??? index : index pour la remise à zéro
+						int Arr : Valeur d'autoreload désirée, int Psc : valeur de prescaler désirée
 	* @retval None
   */
-void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2 /*, ??? index*/);
+void EncoderMode_Init(TIM_TypeDef *Timer, int Arr, int Psc);
+
+/**
+	* @brief  Remet à zéro manuellement le registre CNT d'un timer
+  * @note   
+	* @param  TIM_TypeDef Timer : indique le timer à utiliser par le chronomètre, TIM1, TIM2, TIM3 ou TIM4
+	* @retval None
+  */
+	void Reset_Count_Timer(TIM_TypeDef *Timer);
+	
+	/**
+	* @brief  Permet d'accéder à la valeur contenue dans le registre CNT d'un timer
+  * @note   
+	* @param  TIM_TypeDef Timer : indique le timer à utiliser par le chronomètre, TIM1, TIM2, TIM3 ou TIM4
+	* @retval int cnt
+  */
+	int Get_Count_Timer(TIM_TypeDef *Timer);

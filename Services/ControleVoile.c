@@ -1,9 +1,14 @@
 #include "ControleVoile.h"
 
 void confDriversVoile(){
-	//timer et GPIO du servo-moteur
-	timerConfServo();
+	//timer et GPIO du servo-moteur /!\ l'ordre "GPIO puis Timer" est important !
 	GPIOConfServo();
+	timerConfServo();
+	GPIOConfGirouette();
+	timerConfGirouette();
+	
+	// /!\Initialisation de l'angle de la girouette, partie bloquante !
+	initAngleGirouette();
 }
 
 void reglerVoile(){

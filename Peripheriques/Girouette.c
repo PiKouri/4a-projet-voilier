@@ -1,11 +1,22 @@
 #include "Girouette.h"
 
 void timerConfGirouette(){
-	
-}
-void GPIOConfGirouette(){
+	// PSC=3 pour une précision au degré et non au quart de degré, à vérifier
+	EncoderMode_Init(TIM3, 359, 3);
 }
 
-int getAngleVent () {
-	
+void GPIOConfGirouette(){
+	MyGPIO_pin_conf(GPIOA, 6, 'i'); //a verifier
+	MyGPIO_pin_conf(GPIOA, 7, 'i'); //a verifier
+	MyGPIO_pin_conf(GPIOA, 5, 'f');
+}
+
+void initAngleGirouette(){
+	//Polling : mise à 0 de CNT au passage sur l'index
+	MyGPIO_wait_for_pin(GPIOA, 5);
+	Reset_Count_Timer(TIM3);
+}
+
+int getAngleVent() {
+	return Get_Count_Timer(TIM3);
 }

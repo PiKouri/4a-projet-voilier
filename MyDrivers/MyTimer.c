@@ -202,6 +202,7 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 // TIM1_CH1 - PA09 TM2_CH2 - PA1 TM3_CH2 - PA7 TIM4_CH2 - PB7
 // TIM1_CH1 - PA10 TM2_CH3 - PA2 TM3_CH3 - PB0 TIM4_CH3 - PB8
 // TIM1_CH4 – PA11 TM2_CH4 - PA3 TM3_CH4 - PB1 TIM4_CH4 - PB9
+
 	
 	int CH;
 	switch (Voie) {
@@ -265,16 +266,55 @@ int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie) {
 /*
 
 ============ Mode Encodeur ================================= 
-/!\ EN COURS, A TERMINER
-
+Réglages page 392
 */
 
-void EncoderMode_Init(TIM_TypeDef *Timer, char Voie1, char Voie2 /*, ??? index*/){
+void EncoderMode_Init(TIM_TypeDef *Timer, int Arr, int Psc){
 	
-	//Initialisation de la structure auxilliaire
-		LL_TIM_ENCODER_InitTypeDef *structInit;
-		LL_TIM_ENCODER_StructInit(structInit);
+	MyTimer_Conf(Timer, Arr, Psc);
 	
-	//Paramétrage de la structure auxilliaire
-	structInit->EncoderMode = LL_TIM_ENCODERMODE_X4_TI12;
+	//Mode encodeur x4 : SMS = 011
+	Timer->SMCR&=~(0x7);
+	Timer->SMCR|=0x3;
+	
+	//Réglages CHA
+		//CC1S=01
+	Timer->CCMR1&=~(0x2);
+	Timer->CCMR1|=0x1;
+		//CC1P=0
+	Timer->CCER&=~(1<<1);
+		//IC1F=0000
+	Timer->CCMR1&=~(0xF0);
+	//CC1NP????
+	
+	
+	//Réglages CHB
+		//CC2S=01
+	Timer->CCMR1&=~(0x200);
+	Timer->CCMR1|=0x100;
+		//CC2P = 0
+	Timer->CCER&=~(1<<5);
+		//IC2F=0000
+	Timer->CCMR1&=~(0xF000);
+	 //CC2NP???
+	
+	
+	//Activation compteur : CEN=1
+	Timer->CR1|=0x1;	
 }
+
+
+/*
+======= Manipulation du registre CNT ========================
+*/
+
+void Reset_Count_Timer(TIM_TypeDef *Timer){
+	Timer->CNT=0x0;
+}
+
+int Get_Count_Timer(TIM_TypeDef *Timer){
+	int cnt;
+	cnt=Timer->CNT;
+	return cnt;
+}
+	
