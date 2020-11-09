@@ -59,7 +59,7 @@ void MyGPIO_wait_for_pin(GPIO_TypeDef* GPIOx, int pinNb){
 		case 15 : pin = LL_GPIO_PIN_15; break;
 	}
 	
-	//Pas sûre que LL_GPIO_IsInputPinSet fonctionne avec une entrée en floating input ! voir avec le prof si il y un "niveau limite"
+
 	while(!LL_GPIO_IsInputPinSet(GPIOx, pin))
 	 {
 	}

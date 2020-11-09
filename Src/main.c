@@ -43,7 +43,11 @@ int main(void)
   SystemClock_Config();
 
   /* Add your application code here */
-	
+	timerConfServo();
+	GPIOConfServo();
+	setAngleVoile(45);
+	setAngleVoile(0);
+	setAngleVoile(90);
 	
   /* Infinite loop */
   while (1)

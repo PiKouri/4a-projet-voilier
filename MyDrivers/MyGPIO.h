@@ -1,6 +1,5 @@
 /*
 Driver pour GPIO A à D du STM32F103RB
-/!\ N'a pas encore été testé (pb de multiple defs à la compilation)
 */
 
 #include "stm32f1xx_ll_gpio.h"

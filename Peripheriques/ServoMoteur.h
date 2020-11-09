@@ -6,4 +6,4 @@ void timerConfServo(void);
 void GPIOConfServo(void);
 
 //Positionne la voile à l'angle désiré
-void setAngleVoile(int angle);
+void setAngleVoile(double angle);

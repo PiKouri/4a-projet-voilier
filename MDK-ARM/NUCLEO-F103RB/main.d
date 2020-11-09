@@ -14,10 +14,11 @@ nucleo-f103rb\main.o: ..\Services\Communication.h
 nucleo-f103rb\main.o: ..\Services\ControleMoteur.h
 nucleo-f103rb\main.o: ..\Services\ControleVoile.h
 nucleo-f103rb\main.o: ..\Peripheriques\Accelerometre.h
+nucleo-f103rb\main.o: ..\MyDrivers\MyGPIO.h
+nucleo-f103rb\main.o: ..\LLDrivers\inc\stm32f1xx_ll_gpio.h
 nucleo-f103rb\main.o: ..\Peripheriques\Girouette.h
 nucleo-f103rb\main.o: ..\MyDrivers\MyTimer.h
 nucleo-f103rb\main.o: ..\MyDrivers\MyGPIO.h
-nucleo-f103rb\main.o: ..\LLDrivers\inc\stm32f1xx_ll_gpio.h
 nucleo-f103rb\main.o: ..\Peripheriques\ServoMoteur.h
 nucleo-f103rb\main.o: ..\MyDrivers\MyTimer.h
 nucleo-f103rb\main.o: ..\MyDrivers\MyGPIO.h

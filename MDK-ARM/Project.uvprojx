@@ -522,6 +522,16 @@
               <FileType>5</FileType>
               <FilePath>..\MyDrivers\MyTimer.h</FilePath>
             </File>
+            <File>
+              <FileName>MyADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyDrivers\MyADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyADC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\MyDrivers\MyADC.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -916,7 +926,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>STM32F103xB,USE_FULL_LL_DRIVER,HSE_VALUE=8000000U,USE_FULL_ASSERT</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\LLDrivers\inc;..\Services;..\MyDrivers;..\Peripheriques</IncludePath>
+              <IncludePath>..\Inc;..\LLDrivers\inc;..\Services;..\MyDrivers;..\Peripheriques;..\Src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1099,6 +1109,16 @@
               <FileName>MyTimer.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\MyDrivers\MyTimer.h</FilePath>
+            </File>
+            <File>
+              <FileName>MyADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyDrivers\MyADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>MyADC.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\MyDrivers\MyADC.h</FilePath>
             </File>
           </Files>
         </Group>
