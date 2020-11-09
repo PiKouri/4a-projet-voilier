@@ -22,7 +22,7 @@ void Moteur_Conf(void) ;
 	* @param  Sens du moteur : 'b' babord ou 't' tribord
   * @retval None
   */
-void Set_Cap(char sens) ;
+void setCap(char sens) ;
 
 /**
 	* @brief  Configure la vitesse du moteur. 
@@ -30,4 +30,4 @@ void Set_Cap(char sens) ;
 	* @param  Vitesse du moteur à régler : 0 à 10 = pas de 10% (entre 0% - 100% 
   * @retval None
   */
-void Set_Vitesse(int vitesse) ;
+void setVitesse(int vitesse) ;

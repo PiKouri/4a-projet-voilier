@@ -20,9 +20,17 @@ Gestion des informations
 =======================================================================================*/
 
 /**
-	* @brief  Récupère les informations de la télécommande et les envoie au moteur CC. 
+	* @brief  Récupère la vitesse depuis la télécommande et l'envoie au moteur CC. 
   * @note   None
 	* @param  None
   * @retval None
   */
-void manageRecepteurRF_Moteur(void);
+void reglerVitesseMot(void);
+
+/**
+	* @brief  Récupère le cap depuis la télécommande et l'envoie au moteur CC. 
+  * @note   None
+	* @param  None
+  * @retval None
+  */
+void reglerCap(void);
