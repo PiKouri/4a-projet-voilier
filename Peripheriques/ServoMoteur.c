@@ -2,7 +2,7 @@
 #include <math.h>
 
 //Résolution de la PWM
-int resPWM;  //Pb ici : la résolution est tjr = 0, voir avec JR et Clémentine
+int resPWM;  
 
 
 void timerConfServo(){

@@ -7,6 +7,7 @@ void confDriversVoile(){
 	GPIOConfGirouette();
 	timerConfGirouette();
 	GPIOConfAccelero();
+	ADCConfAccelero();
 	
 	// /!\Initialisation de l'angle de la girouette, partie bloquante !
 	initAngleGirouette();

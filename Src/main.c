@@ -35,17 +35,16 @@ void  SystemClock_Config(void);
 	
 
 
+
+
+
 int main(void)
 {
   /* Configure the system clock to 72 MHz */
   SystemClock_Config();
 
   /* Add your application code here */
-	timerConfServo();
-	GPIOConfServo();
-	setAngleVoile(45);
-	setAngleVoile(0);
-	setAngleVoile(90);
+	
 	
   /* Infinite loop */
   while (1)

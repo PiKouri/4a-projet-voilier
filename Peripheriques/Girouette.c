@@ -5,8 +5,8 @@ void timerConfGirouette(){
 }
 
 void GPIOConfGirouette(){
-	MyGPIO_pin_conf(GPIOA, 6, 'f'); //a verifier
-	MyGPIO_pin_conf(GPIOA, 7, 'f'); //a verifier
+	MyGPIO_pin_conf(GPIOA, 6, 'f'); 
+	MyGPIO_pin_conf(GPIOA, 7, 'f'); 
 	MyGPIO_pin_conf(GPIOA, 5, 'f');
 }
 

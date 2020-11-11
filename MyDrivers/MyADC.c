@@ -1,5 +1,6 @@
 #include "MyADC.h"
 
+
 void MyADC_conf(ADC_TypeDef* ADCx, int voie){
 	//Conversion à une seule voie : L=0000
 	ADCx->SQR1&=~(0xF<<20);
@@ -19,10 +20,10 @@ int MyADC_get_value(ADC_TypeDef* ADCx){
 	
 	//Attend la fin de la conversion
 	while(!conversion_finie){
-		conversion_finie=ADCx->SR&~(1<<1);
+		conversion_finie=(ADCx->SR)&~(1<<1);
 	}
 	
 	//Récupère la valeur
-	value=ADCx->DR&~(0xFFFF0000);
+	value=(ADCx->DR)&~(0xFFFF0000);
 	return value;
 }
