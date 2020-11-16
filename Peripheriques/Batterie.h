@@ -24,6 +24,6 @@ Récupération niveau batterie
 	* @brief  Récupère le niveau de la batterie
   * @note  	None
 	* @param  None
-  * @retval NiveauBatterie
+  * @retval NiveauBatterie (%)
   */
 double getNiveau(void) ;

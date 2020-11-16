@@ -33,6 +33,8 @@ Section Cross References
     accelerometre.o(i.getAngleRoulis) refers to acos.o(i.acos) for acos
     accelerometre.o(i.getAngleRoulis) refers to dfixi.o(.text) for __aeabi_d2iz
     batterie.o(i.Batterie_Conf) refers to mygpio.o(i.MyGPIO_pin_conf) for MyGPIO_pin_conf
+    batterie.o(i.Batterie_Conf) refers to myadc.o(i.MyADC_conf) for MyADC_conf
+    batterie.o(i.getNiveau) refers to myadc.o(i.MyADC_get_value) for MyADC_get_value
     girouette.o(i.GPIOConfGirouette) refers to mygpio.o(i.MyGPIO_pin_conf) for MyGPIO_pin_conf
     girouette.o(i.getAngleVent) refers to mytimer.o(i.Get_Count_Timer) for Get_Count_Timer
     girouette.o(i.initAngleGirouette) refers to mygpio.o(i.MyGPIO_wait_for_pin) for MyGPIO_wait_for_pin
@@ -390,8 +392,8 @@ Removing Unused input sections from the image.
     Removing batterie.o(.rev16_text), (4 bytes).
     Removing batterie.o(.revsh_text), (4 bytes).
     Removing batterie.o(.rrx_text), (6 bytes).
-    Removing batterie.o(i.Batterie_Conf), (20 bytes).
-    Removing batterie.o(i.getNiveau), (2 bytes).
+    Removing batterie.o(i.Batterie_Conf), (32 bytes).
+    Removing batterie.o(i.getNiveau), (24 bytes).
     Removing girouette.o(.rev16_text), (4 bytes).
     Removing girouette.o(.revsh_text), (4 bytes).
     Removing girouette.o(.rrx_text), (6 bytes).
@@ -539,7 +541,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing dsqrt.o(.text), (162 bytes).
 
-172 unused section(s) (total 13468 bytes) removed from the image.
+172 unused section(s) (total 13502 bytes) removed from the image.
 
 ==============================================================================
 
@@ -823,14 +825,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       248         14          0          0          0     354228   main.o
-       104         30          0         16          0      27297   mytimer.o
-        36          8        236          0       1024        780   startup_stm32f103xb.o
-        40          6          0          0          0       2105   stm32f1xx_ll_utils.o
-        88         18          0          4          0       1171   system_stm32f1xx.o
+       248         14          0          0          0     354188   main.o
+       104         30          0         16          0      27257   mytimer.o
+        36          8        236          0       1024        776   startup_stm32f103xb.o
+        40          6          0          0          0       2093   stm32f1xx_ll_utils.o
+        88         18          0          4          0       1159   system_stm32f1xx.o
 
     ----------------------------------------------------------------------
-       518         76        268         20       1028     385581   Object Totals
+       518         76        268         20       1028     385473   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          0          4          0   (incl. Padding)
 
@@ -869,8 +871,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-       604         92        268         20       1028     385385   Grand Totals
-       604         92        268         20       1028     385385   ELF Image Totals
+       604         92        268         20       1028     385277   Grand Totals
+       604         92        268         20       1028     385277   ELF Image Totals
        604         92        268         20          0          0   ROM Totals
 
 ==============================================================================

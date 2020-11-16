@@ -1,6 +1,7 @@
 #include "Batterie.h"
 #include "MyGPIO.h"
 #include "stm32f1xx_ll_adc.h" 
+#include "MyADC.h"
 
 // Batterie : 
 //		PC2 : ADC_IN12
@@ -25,9 +26,12 @@ void Batterie_Conf(void) {
 
 	LIBLL : EOS instead of EOC : sequence
 	*/
+	
+	MyADC_conf(ADC2, 12);
 
 }
 
 double getNiveau(void) {
-	
+	double result = MyADC_get_value(ADC2);
+	result = result *100 / 4096;
 }
