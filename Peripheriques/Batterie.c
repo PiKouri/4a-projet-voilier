@@ -34,4 +34,5 @@ void Batterie_Conf(void) {
 double getNiveau(void) {
 	double result = MyADC_get_value(ADC2);
 	result = result *100 / 4096;
+	return result;
 }

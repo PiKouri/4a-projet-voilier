@@ -4,6 +4,8 @@ Driver pour GPIO A à D du STM32F103RB
 
 #include "stm32f1xx_ll_gpio.h"
 
+#include "stm32f1xx_ll_bus.h"
+
 /**
 	* @brief  Configure une broche d'un GPIO donné
   * @note   

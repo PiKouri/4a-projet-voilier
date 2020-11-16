@@ -11,7 +11,7 @@
 
 void Moteur_Conf(void) {
 	
-	MyGPIO_pin_conf(GPIOA, 1, 'p'); // Pushpull ?
+	MyGPIO_pin_conf(GPIOA, 1, 'l'); // alternate ?
 	MyGPIO_pin_conf(GPIOA, 2, 'p'); // Pushpull ?
 	double Res = PWM_Init(TIM2,'2',20, 'o', ' '); //20kHz
 

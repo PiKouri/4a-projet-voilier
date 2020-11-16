@@ -19,6 +19,6 @@ void GPIOConfServo(){
 
 void setAngleVoile(double angle){
 	double CCR_value;
-	CCR_value = (angle/90)*(pow(2, resPWM));
+	CCR_value = (angle/90)*TIM4->ARR;
 	PWM_Set_CCR(TIM4, '3', CCR_value);
 }

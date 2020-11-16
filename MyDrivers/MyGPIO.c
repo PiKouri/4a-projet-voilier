@@ -2,7 +2,14 @@
 
 void MyGPIO_pin_conf(GPIO_TypeDef* GPIOx, int pinNb, char mode){
 	
-	uint32_t pin;
+	int32_t pin;
+	int periph;
+	if (GPIOx == GPIOA) periph = LL_APB2_GRP1_PERIPH_GPIOA;
+	else if (GPIOx == GPIOB) periph = LL_APB2_GRP1_PERIPH_GPIOB;
+	else if (GPIOx == GPIOC) periph = LL_APB2_GRP1_PERIPH_GPIOC;
+	else if (GPIOx == GPIOD) periph = LL_APB2_GRP1_PERIPH_GPIOD;
+	
+	LL_APB2_GRP1_EnableClock(periph);
 	
 	switch (pinNb){
 		case 0 : pin = LL_GPIO_PIN_0; break;

@@ -10,8 +10,8 @@
 //		CH2 : PB7 = TIM4_CH2
 //Periode fixe 20 ou 25ms, selon modèle soit 
 void RecepteurRF_Conf(void) {
-	MyGPIO_pin_conf(GPIOB, 6, 'f'); // Floating input ?
-	MyGPIO_pin_conf(GPIOB, 7, 'f'); // Floating input ?
+	MyGPIO_pin_conf(GPIOB, 6, 'i'); // Floating input ?
+	MyGPIO_pin_conf(GPIOB, 7, 'i'); // Floating input ?
 	double Res = PWM_Init(TIM4,'1',0.05, 'i', 'r'); // 50 Hz ou 40 Hz
 	double Res2 = PWM_Init(TIM4,'2',0.05, 'i', 'f'); // 50 Hz ou 40 Hz
 }

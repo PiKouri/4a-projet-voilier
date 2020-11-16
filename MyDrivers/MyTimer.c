@@ -210,8 +210,12 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 		case '2' : CH = LL_TIM_CHANNEL_CH2; break;
 		case '3' : CH = LL_TIM_CHANNEL_CH3; break;
 		case '4' : CH = LL_TIM_CHANNEL_CH4; break;
+	//	case '1' : CH = TIM_CCER_CC1E; break;
+	//	case '2' : CH = TIM_CCER_CC2E; break;
+	//	case '3' : CH = TIM_CCER_CC3E; break;
+	//	case '4' : CH = TIM_CCER_CC4E; break;
 	}
-	
+	//Timer-> CCER |= CH;
 	//int Arr = LL_TIM_GetAutoReload(Timer);
 	
 	int Psc = 0; 
@@ -219,7 +223,7 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 	/*double Thorloge = 1/8000; // Par défaut 8MHz ???
 	double Arr = (Ttimer / Thorloge) - 1;*/
 	double Arr = (Ttimer *8000) -1;
-	MyTimer_Conf(TIM2, Arr, Psc);
+	MyTimer_Conf(Timer, Arr, Psc);
 
 	double Res = log2(Arr); // A voir
 	
@@ -234,10 +238,10 @@ double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mod
 			/*LL_TIM_IC_SetActiveInput(Timer, CH, LL_TIM_ACTIVEINPUT_TRC);  // A VERIFIER
 			LL_TIM_IC_SetFilter(Timer, CH, LL_TIM_IC_FILTER_FDIV1);	// A verifier
 			LL_TIM_IC_SetPrescaler (Timer, CH, LL_TIM_ICPSC_DIV1); // A verifier*/
-			LL_TIM_IC_SetPolarity (TIM4, LL_TIM_CHANNEL_CH1, pol);
+			LL_TIM_IC_SetPolarity (Timer, CH, pol);
 			break;
 	}
-	LL_TIM_CC_EnableChannel(TIM2, CH);
+	LL_TIM_CC_EnableChannel(Timer, CH);
 	
 	return Res;
 	
