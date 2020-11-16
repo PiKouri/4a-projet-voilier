@@ -6,7 +6,7 @@ Driver pour ADC 1 et 2
 #include "stm32f1xx_ll_rcc.h" // utile dans la fonction SystemClock_Config
 #include "stm32f1xx_ll_utils.h"   // utile dans la fonction SystemClock_Config
 #include "stm32f1xx_ll_system.h" // utile dans la fonction SystemClock_Config
-
+#include "stm32f1xx_ll_bus.h"
 
 /**
 	* @brief  Configure un ADC pour convertir sur la voie (une et une seule voie) qui nous intéresse 

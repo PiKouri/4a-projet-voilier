@@ -14,6 +14,6 @@ void ADCConfAccelero(){
 int getAngleRoulis(){
 	double valueADC, angleRoulis;
 	valueADC = MyADC_get_value(ADC1);
-	angleRoulis = acos(valueADC/0.48);
+	angleRoulis = acos(valueADC/596.8);
 	return angleRoulis;
 }
