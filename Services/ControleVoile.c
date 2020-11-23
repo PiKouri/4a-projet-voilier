@@ -10,7 +10,7 @@ void confDriversVoile(){
 	ADCConfAccelero();
 	
 	// /!\Initialisation de l'angle de la girouette, partie bloquante !
-	initAngleGirouette();
+	//initAngleGirouette();
 }
 
 void reglerVoile(){

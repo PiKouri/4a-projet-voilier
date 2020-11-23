@@ -21,7 +21,7 @@ void MyADC_conf(ADC_TypeDef* ADCx, int voie){
 }
 
 int MyADC_get_value(ADC_TypeDef* ADCx){
-	int conversion_finie=0;
+	//int conversion_finie=0;
 	int value;
 	
 	ADCx->CR2 |= ADC_CR2_ADON; // lancement de la conversion

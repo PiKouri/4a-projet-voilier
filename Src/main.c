@@ -21,7 +21,8 @@
 #include "Communication.h"
 #include "ControleMoteur.h"
 #include "ControleVoile.h"
-
+/*#include "Moteur.h"
+#include "ServoMoteur.h"*/
 
 void  SystemClock_Config(void);
 
@@ -47,13 +48,19 @@ int main(void)
   /* Add your application code here */
 	confDriversMoteur();
 	confDriversVoile();	
+// tests des pwm output
+	/*setVitesse(1); // TIM2->CNT et (GPIOA->IDR & GPIO_IDR_IDR1)>>1
+	setCap('b');
+	//setCap('t');
+	setAngleVoile(90); // TIM4->CNT et (GPIOB->IDR & GPIO_IDR_IDR8)>>8
+	*/
 	
   /* Infinite loop */
   while (1)
   {
 		reglerVoile();
-		reglerVitesseMot();
 		reglerCap();
+		reglerVitesseMot();
   }
 }
 

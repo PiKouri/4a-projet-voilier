@@ -188,81 +188,136 @@ void TIM4_IRQHandler(void)
 
 */
 
-double PWM_Init(TIM_TypeDef *Timer, char Voie, float Frequence_PWM_Khz, char Mode, char Polarite) {
-//
-// Cette fonction initialise la voie spécifiée du timer voulu en PWM.
-// La fréquence souhaitée est passée en paramètre.
-// La fonction renvoie un entier qui correspond à la résolution de la PWM pour
-// pouvoir ensuite régler les rapports cycliques.
-//
-// 3 Timer "general Purpose", TIM2, TIM3 et TIM4 + TIM1
-// Chacun d'entre eux dispose de 4 voies de sorties numérotées de 1 à 4
-// Mapping des IO:
-// TIM1_CH1 - PA08 TM2_CH1_ETR - PA0 TM3_CH1 - PA6 TIM4_CH1 - PB6
-// TIM1_CH1 - PA09 TM2_CH2 - PA1 TM3_CH2 - PA7 TIM4_CH2 - PB7
-// TIM1_CH1 - PA10 TM2_CH3 - PA2 TM3_CH3 - PB0 TIM4_CH3 - PB8
-// TIM1_CH4 – PA11 TM2_CH4 - PA3 TM3_CH4 - PB1 TIM4_CH4 - PB9
+double PWM_Output_Init(TIM_TypeDef *Timer, int Voie, float Frequence_PWM, float DutyCycle_PWM) {
+	// Configure la PWM en output
 
-	
 	int CH;
 	switch (Voie) {
-		case '1' : CH = LL_TIM_CHANNEL_CH1; break;
-		case '2' : CH = LL_TIM_CHANNEL_CH2; break;
-		case '3' : CH = LL_TIM_CHANNEL_CH3; break;
-		case '4' : CH = LL_TIM_CHANNEL_CH4; break;
-	//	case '1' : CH = TIM_CCER_CC1E; break;
-	//	case '2' : CH = TIM_CCER_CC2E; break;
-	//	case '3' : CH = TIM_CCER_CC3E; break;
-	//	case '4' : CH = TIM_CCER_CC4E; break;
+		case 1 : CH = LL_TIM_CHANNEL_CH1; break;
+		case 2 : CH = LL_TIM_CHANNEL_CH2; break;
+		case 3 : CH = LL_TIM_CHANNEL_CH3; break;
+		case 4 : CH = LL_TIM_CHANNEL_CH4; break;
 	}
-	//Timer-> CCER |= CH;
-	//int Arr = LL_TIM_GetAutoReload(Timer);
-	
-	int Psc = 0; 
-	double Ttimer = 1/Frequence_PWM_Khz;
-	/*double Thorloge = 1/8000; // Par défaut 8MHz ???
-	double Arr = (Ttimer / Thorloge) - 1;*/
-	double Arr = (Ttimer *8000) -1;
-	MyTimer_Conf(Timer, Arr, Psc);
 
-	double Res = log2(Arr); // A voir
+	// Active l'horloge
+	if(Timer == TIM1)
+		RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
+	if(Timer == TIM2)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+	if(Timer == TIM3)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	if(Timer == TIM4)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
 	
-	double pol;
-	switch (Mode) {
-		case 'o' : LL_TIM_OC_SetMode(Timer, CH, LL_TIM_OCMODE_PWM1); break; // TIM2_CH2 : Mode PWM1 = active as long as TIMx_CNT<TIMx_CCRy else inactive 
-		case 'i' : 						// INPUT plutot utiliser registres 
-			switch (Polarite) {
-				case 'r' : pol = LL_TIM_IC_POLARITY_RISING;break;
-				case 'f' : pol = LL_TIM_IC_POLARITY_FALLING;break;
-			}
-			/*LL_TIM_IC_SetActiveInput(Timer, CH, LL_TIM_ACTIVEINPUT_TRC);  // A VERIFIER
-			LL_TIM_IC_SetFilter(Timer, CH, LL_TIM_IC_FILTER_FDIV1);	// A verifier
-			LL_TIM_IC_SetPrescaler (Timer, CH, LL_TIM_ICPSC_DIV1); // A verifier*/
-			LL_TIM_IC_SetPolarity (Timer, CH, pol);
-			break;
+	// Configure la fréquence
+	int psc = 1;
+	int arr = 0;
+	int found = 0;
+	while(!found) {
+		arr = 72000000 / (Frequence_PWM * psc);
+		if(arr <= 65535) {
+			found = 1;
+		} else {
+			psc++;
+		}
 	}
+	
+	Timer->PSC = psc - 1;
+	Timer->ARR = arr;
+	
+	// Configuration du rapport cyclique
+	int ccr = arr * DutyCycle_PWM;
+	if(Voie == 1) {
+		Timer->CCR1 = ccr;
+	} else if(Voie == 2) {
+		Timer->CCR2 = ccr;
+	} else if(Voie == 3) {
+		Timer->CCR3 = ccr;
+	} else if(Voie == 4) {
+		Timer->CCR4 = ccr;
+	}
+	
+	LL_TIM_OC_SetMode(Timer, CH, LL_TIM_OCMODE_PWM1);
+	
 	LL_TIM_CC_EnableChannel(Timer, CH);
-	
-	return Res;
-	
+
+	return log2(arr); // A verifier : résolution
+
 }
 
-void PWM_Set_CCR(TIM_TypeDef *Timer, char Voie, int Ccr) {
+void PWM_Input_Init(TIM_TypeDef *Timer, int Voie) {
+	// Configure la PWM en input
+	// Seulement sur les channels 1 ou 2
+	
+	// Active l'horloge
+	if(Timer == TIM1)
+		RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
+	if(Timer == TIM2)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+	if(Timer == TIM3)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	if(Timer == TIM4)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
+	
+	Timer->PSC = 0;
+	Timer->ARR = 0xFFFF;
+	
+	// Configure les Voies
+
+	if (Voie == 1) {
+		//Channel 1 : Rising edge
+		LL_TIM_IC_SetPolarity (Timer, LL_TIM_CHANNEL_CH1, LL_TIM_IC_POLARITY_RISING);
+		//Channel 2 : Falling edge
+		LL_TIM_IC_SetPolarity (Timer, LL_TIM_CHANNEL_CH2, LL_TIM_IC_POLARITY_FALLING);
+
+		//Channel 1 -> Period
+		LL_TIM_IC_SetActiveInput(Timer, LL_TIM_CHANNEL_CH1, LL_TIM_ACTIVEINPUT_DIRECTTI);
+		//Channel 2 -> Duty_cycle
+		LL_TIM_IC_SetActiveInput(Timer, LL_TIM_CHANNEL_CH2, LL_TIM_ACTIVEINPUT_DIRECTTI);
+
+		//Trigger input (reset) 
+		LL_TIM_SetTriggerInput(Timer, LL_TIM_TS_TI1FP1);// Filtered Timer Input 1
+
+	} else if (Voie == 2) {
+		//Channel 2 : Rising edge
+		LL_TIM_IC_SetPolarity (Timer, LL_TIM_CHANNEL_CH2, LL_TIM_IC_POLARITY_RISING);
+		//Channel 1 : Falling edge
+		LL_TIM_IC_SetPolarity (Timer, LL_TIM_CHANNEL_CH1, LL_TIM_IC_POLARITY_FALLING);
+
+		//Channel 2 -> Period
+		LL_TIM_IC_SetActiveInput(Timer, LL_TIM_CHANNEL_CH2, LL_TIM_ACTIVEINPUT_DIRECTTI);
+		//Channel 1 -> Duty_cycle
+		LL_TIM_IC_SetActiveInput(Timer, LL_TIM_CHANNEL_CH1, LL_TIM_ACTIVEINPUT_DIRECTTI);
+
+		//Trigger input (reset) 
+		LL_TIM_SetTriggerInput(Timer, LL_TIM_TS_TI2FP2);// Filtered Timer Input 2
+	}
+
+	//Slave mode reset -> Rising edge of the selected trigger input (TRGI) reinitializes the counter and generates an update of the registers
+	LL_TIM_EnableMasterSlaveMode(Timer);
+	LL_TIM_SetSlaveMode(Timer, LL_TIM_SLAVEMODE_RESET);
+	
+	//Active les voies
+	LL_TIM_CC_EnableChannel(Timer,LL_TIM_CHANNEL_CH1);
+	LL_TIM_CC_EnableChannel(Timer,LL_TIM_CHANNEL_CH2);
+
+}
+void PWM_Set_CCR(TIM_TypeDef *Timer, int Voie, int Ccr) {
 	switch (Voie) {
-		case '1' : LL_TIM_OC_SetCompareCH1(Timer, Ccr); break;
-		case '2' : LL_TIM_OC_SetCompareCH2(Timer, Ccr); break;
-		case '3' : LL_TIM_OC_SetCompareCH3(Timer, Ccr); break;
-		case '4' : LL_TIM_OC_SetCompareCH4(Timer, Ccr); break;
+		case 1 : LL_TIM_OC_SetCompareCH1(Timer, Ccr); break;
+		case 2 : LL_TIM_OC_SetCompareCH2(Timer, Ccr); break;
+		case 3 : LL_TIM_OC_SetCompareCH3(Timer, Ccr); break;
+		case 4 : LL_TIM_OC_SetCompareCH4(Timer, Ccr); break;
 	}
 }
 
-int PWM_Get_CCR(TIM_TypeDef *Timer, char Voie) {
+int PWM_Get_CCR(TIM_TypeDef *Timer, int Voie) {
 	int Ccr;
 	switch (Voie) {
-		case '1' : Ccr = LL_TIM_OC_GetCompareCH1(Timer); break;
-		case '2' : Ccr = LL_TIM_OC_GetCompareCH2(Timer); break;
-		case '3' : Ccr = LL_TIM_OC_GetCompareCH3(Timer); break;
-		case '4' : Ccr = LL_TIM_OC_GetCompareCH4(Timer); break;
+		case 1 : Ccr = LL_TIM_OC_GetCompareCH1(Timer); break;
+		case 2 : Ccr = LL_TIM_OC_GetCompareCH2(Timer); break;
+		case 3 : Ccr = LL_TIM_OC_GetCompareCH3(Timer); break;
+		case 4 : Ccr = LL_TIM_OC_GetCompareCH4(Timer); break;
 	}
 	return Ccr;
 }
@@ -315,6 +370,24 @@ void EncoderMode_Init(TIM_TypeDef *Timer, int Arr, int Psc){
 	
 	//Activation compteur : CEN=1
 	Timer->CR1|=0x1;	
+
+/*
+// Active l'horloge
+	
+	// Selectionne le mode encodeur
+	LL_TIM_SetEncoderMode(Timer, LL_TIM_ENCODERMODE_X4_TI12); // Counter counts up/down on both TI1FP1 and TI2FP2 edges depending on the level of the other input
+	// On configure le channel 1
+	LL_TIM_IC_SetActiveInput(Timer, LL_TIM_CHANNEL_CH1, LL_TIM_ACTIVEINPUT_DIRECTTI);
+	// On configure le channel 2
+	LL_TIM_IC_SetActiveInput(Timer, LL_TIM_CHANNEL_CH2, LL_TIM_ACTIVEINPUT_DIRECTTI);
+	// On configure la polarite du channel 1
+	LL_TIM_IC_SetPolarity (Timer, LL_TIM_CHANNEL_CH1, LL_TIM_IC_POLARITY_RISING);
+	// On configure la polarite du channel 2
+	LL_TIM_IC_SetPolarity (Timer, LL_TIM_CHANNEL_CH2, LL_TIM_IC_POLARITY_RISING);
+	
+	Timer->ARR = 0xFFFF;
+*/
+
 }
 
 

@@ -7,12 +7,14 @@ void confDriversMoteur(void) {
 	RecepteurRF_Conf();
 };
 
+void reglerCap(void) {
+	char cap = getCap();
+	setCap(cap);
+};
+
 void reglerVitesseMot(void) {
 	double vitesse = getVitesse() ;
 	setVitesse(vitesse);
 };
 
-void reglerCap(void) {
-	char cap = getCap();
-	setCap(cap);
-};
+

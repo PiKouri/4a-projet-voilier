@@ -12,8 +12,7 @@
 void RecepteurRF_Conf(void) {
 	MyGPIO_pin_conf(GPIOB, 6, 'i'); // Floating input ?
 	MyGPIO_pin_conf(GPIOB, 7, 'i'); // Floating input ?
-	double Res = PWM_Init(TIM4,'1',0.05, 'i', 'r'); // 50 Hz ou 40 Hz
-	double Res2 = PWM_Init(TIM4,'2',0.05, 'i', 'f'); // 50 Hz ou 40 Hz
+	PWM_Input_Init(TIM4, 1); // Voie 1 en Rising Edge
 }
 
 
@@ -33,13 +32,14 @@ double RecepteurRF_Get_Duty_Cycle(void) {
 char getCap(void) {
 	double Duty_Cycle = RecepteurRF_Get_Duty_Cycle();
 	char cap;
-	if (Duty_Cycle <= 1.5) cap='b';
+	if (Duty_Cycle <= 7.5) cap='b';
 	else cap='t';
 	return cap;
 }
 
 double getVitesse(void){
-	double Duty_Cycle = RecepteurRF_Get_Duty_Cycle();
-	double vitesse = fabs(Duty_Cycle-1.5)*100/0.5;
+	double Duty_Cycle = RecepteurRF_Get_Duty_Cycle(); // Duty_cycle en % 
+	double vitesse = fabs(Duty_Cycle-7.5)*100/2.5; // ecart (abs) entre la valeur moyenne : 7.5% et le duty cycle | report en % par rapport à la plage (5%-10%)
+	//egs : Duty_cycle = 10% -> vitesse = 2.5*100/2.5 = 100
 	return vitesse;
 }

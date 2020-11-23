@@ -11,10 +11,10 @@
 
 void Moteur_Conf(void) {
 	
-	MyGPIO_pin_conf(GPIOA, 1, 'l'); // alternate ?
-	MyGPIO_pin_conf(GPIOA, 2, 'p'); // Pushpull ?
-	double Res = PWM_Init(TIM2,'2',20, 'o', ' '); //20kHz
-
+	MyGPIO_pin_conf(GPIOA, 1, 'l'); // alternate pushpull
+	MyGPIO_pin_conf(GPIOA, 2, 'p'); // pushpull 
+	PWM_Output_Init(TIM2,2,50,0); //50 Hz (20 ms)
+	MyTimer_Start(TIM2);
 }
 
 void setCap(char sens) {
@@ -32,6 +32,6 @@ void setVitesse(int vitesse) {
 	if (0<=vitesse && vitesse<=10) {
 		int Arr = LL_TIM_GetAutoReload(TIM2);
 		int Ccr = Arr/10 * vitesse;
-		PWM_Set_CCR(TIM2,'2',Ccr);
+		PWM_Set_CCR(TIM2,2,Ccr);
 	} else ; // Error
 }
