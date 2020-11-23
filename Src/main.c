@@ -34,7 +34,8 @@ void  SystemClock_Config(void);
   */
 	
 
-
+//entier utilisé pour visualiser des valeurs lors des tests, à dégager
+int test;
 
 
 
@@ -57,6 +58,54 @@ int main(void)
 }
 
 
+void mainfinal(){
+	  /* Configure the system clock to 72 MHz */
+  SystemClock_Config();
+
+  /* Add your application code here */
+	confDriversMoteur();
+	confDriversVoile();	
+	
+  /* Infinite loop */
+  while (1)
+  {
+		reglerVoile();
+		reglerVitesseMot();
+		reglerCap();
+  }
+}
+
+void testServo(){
+	GPIOConfServo();
+	timerConfServo();
+	setAngleVoile(45);
+	setAngleVoile(0);
+	setAngleVoile(90);
+	setAngleVoile(0);
+}
+
+void testGirouette(){
+	GPIOConfGirouette();
+	timerConfGirouette();
+	initAngleGirouette();
+	while(1){
+		test=getAngleVent();
+	}
+}
+
+
+void testAccelero() {
+	GPIOConfAccelero();
+	ADCConfAccelero();
+	while(1){
+		test=getAngleRoulis();
+	}
+}
+
+void testVoile(){
+	confDriversVoile();
+	reglerVoile();
+}
 
 
 
