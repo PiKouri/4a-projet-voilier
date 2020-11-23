@@ -1,0 +1,5 @@
+/*
+!.gitignore
+!*.uvoptx
+!*.uvprojx
+!startup_stm32f103xb.s

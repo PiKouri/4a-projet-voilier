@@ -404,4 +404,3 @@ int Get_Count_Timer(TIM_TypeDef *Timer){
 	cnt=Timer->CNT;
 	return cnt;
 }
-	
