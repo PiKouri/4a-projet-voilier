@@ -275,7 +275,19 @@ Réglages page 392
 
 void EncoderMode_Init(TIM_TypeDef *Timer, int Arr, int Psc){
 	
-	MyTimer_Conf(Timer, Arr, Psc);
+	// Démarre l'horloge
+	if(Timer == TIM1)
+		RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
+	if(Timer == TIM2)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+	if(Timer == TIM3)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	if(Timer == TIM4)
+		RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
+	
+	//Réglages ARR et PSC
+	Timer->ARR=Arr;
+	Timer->PSC=Psc;
 	
 	//Mode encodeur x4 : SMS = 001
 	Timer->SMCR&=~(0x7);
@@ -289,7 +301,6 @@ void EncoderMode_Init(TIM_TypeDef *Timer, int Arr, int Psc){
 	Timer->CCER&=~(1<<1);
 		//IC1F=0000
 	Timer->CCMR1&=~(0xF0);
-	//CC1NP????
 	
 	
 	//Réglages CHB
@@ -300,7 +311,6 @@ void EncoderMode_Init(TIM_TypeDef *Timer, int Arr, int Psc){
 	Timer->CCER&=~(1<<5);
 		//IC2F=0000
 	Timer->CCMR1&=~(0xF000);
-	 //CC2NP???
 	
 	
 	//Activation compteur : CEN=1

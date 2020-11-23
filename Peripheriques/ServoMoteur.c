@@ -1,16 +1,10 @@
 #include "ServoMoteur.h"
 #include <math.h>
 
-//Résolution de la PWM
-int resPWM;  
-
 
 void timerConfServo(){
-	resPWM=PWM_Init(TIM4, '3', 1, 'o', ' ');
+	PWM_Output_Init(TIM4,3, 50, 0.05); // 50 Hz (20 ms) et 5% = 1ms => Voile à 0
 	MyTimer_Start(TIM4);
-	
-	//On règle l'angle de la voile à 0 avant tout
-	PWM_Set_CCR(TIM4, '3', 0);
 }
 
 void GPIOConfServo(){
@@ -19,6 +13,7 @@ void GPIOConfServo(){
 
 void setAngleVoile(double angle){
 	double CCR_value;
-	CCR_value = (angle/90)*TIM4->ARR;
-	PWM_Set_CCR(TIM4, '3', CCR_value);
+	double une_ms = TIM4->ARR/20;
+	CCR_value = (angle/90)*une_ms+une_ms;
+	PWM_Set_CCR(TIM4, 3, CCR_value);
 }

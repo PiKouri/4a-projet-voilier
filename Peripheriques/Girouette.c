@@ -1,6 +1,7 @@
 #include "Girouette.h"
 
 void timerConfGirouette(){
+	//Très possiblement pb ici, p-e un psc de 4 pour pas compter les quarts de degré ? voir avec le prof
 	EncoderMode_Init(TIM3, 359, 0);
 }
 
