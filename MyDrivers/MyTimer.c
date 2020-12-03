@@ -259,8 +259,8 @@ void PWM_Input_Init(TIM_TypeDef *Timer, int Voie) {
 	if(Timer == TIM4)
 		RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
 	
-	Timer->PSC = 0;
-	Timer->ARR = 0xFFFF;
+	Timer->PSC = 29;
+	Timer->ARR = 0xBB80;
 	
 	// Configure les Voies
 
@@ -300,6 +300,7 @@ void PWM_Input_Init(TIM_TypeDef *Timer, int Voie) {
 	//Active les voies
 	LL_TIM_CC_EnableChannel(Timer,LL_TIM_CHANNEL_CH1);
 	LL_TIM_CC_EnableChannel(Timer,LL_TIM_CHANNEL_CH2);
+	MyTimer_Start(Timer);
 
 }
 void PWM_Set_CCR(TIM_TypeDef *Timer, int Voie, int Ccr) {

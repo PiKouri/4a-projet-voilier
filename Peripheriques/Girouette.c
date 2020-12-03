@@ -2,7 +2,7 @@
 
 void timerConfGirouette(){
 	//Très possiblement pb ici, p-e un psc de 4 pour pas compter les quarts de degré ? voir avec le prof
-	EncoderMode_Init(TIM3, 359, 0);
+	EncoderMode_Init(TIM3, 719, 0);
 }
 
 void GPIOConfGirouette(){
@@ -18,5 +18,8 @@ void initAngleGirouette(){
 }
 
 int getAngleVent() {
-	return Get_Count_Timer(TIM3);
+	int tutu ;
+	tutu= Get_Count_Timer(TIM3)/2;
+	toto=tutu ;
+	return tutu;
 }

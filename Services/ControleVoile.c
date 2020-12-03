@@ -10,7 +10,7 @@ void confDriversVoile(){
 	ADCConfAccelero();
 	
 	// /!\Initialisation de l'angle de la girouette, partie bloquante !
-	//initAngleGirouette();
+	initAngleGirouette();
 }
 
 void reglerVoile(){
@@ -20,8 +20,10 @@ void reglerVoile(){
 	}
 	else {
 		angleVent=getAngleVent();
-		if (angleVent>45){
-			setAngleVoile((angleVent-45)*2);
+		if (angleVent>45 && angleVent<180){
+			setAngleVoile(((angleVent-45)/(180-45))*90);
+		} else if (angleVent>180 && angleVent < 315) {
+			setAngleVoile(((315-angleVent)/(315-180))*90);
 		}
 	}
 }

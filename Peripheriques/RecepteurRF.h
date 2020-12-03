@@ -24,7 +24,7 @@ Reception infos
 	* @param  None
   * @retval rapport cyclique (%)
   */
-double RecepteurRF_Get_Duty_Cycle(void) ;
+float RecepteurRF_Get_Duty_Cycle(void) ;
 
 /**
 	* @brief  Récupère les informations (vitesse) de la télécommande. 
@@ -32,7 +32,7 @@ double RecepteurRF_Get_Duty_Cycle(void) ;
 	* @param  None
   * @retval vitesse (%)
   */
-double getVitesse(void) ;
+float getVitesse(void) ;
 
 /**
 	* @brief  Récupère les informations (cap) de la télécommande. 

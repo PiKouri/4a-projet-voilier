@@ -11,9 +11,9 @@ void GPIOConfServo(){
 	MyGPIO_pin_conf(GPIOB, 8, 'l');	
 }
 
-void setAngleVoile(double angle){
-	double CCR_value;
-	double une_ms = TIM4->ARR/20;
-	CCR_value = (angle/90)*une_ms+une_ms;
+void setAngleVoile(float angle){
+	float CCR_value;
+	float une_ms = TIM4->ARR/20.0;
+	CCR_value = (angle/90.0)*une_ms+une_ms;
 	PWM_Set_CCR(TIM4, 3, CCR_value);
 }

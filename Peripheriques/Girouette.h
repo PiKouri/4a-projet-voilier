@@ -1,6 +1,6 @@
 #include "MyTimer.h"
 #include "MyGPIO.h"
-
+extern int toto;
 //Configurent le timer et la broche du GPIO liés à la girouette
 void timerConfGirouette(void);
 void GPIOConfGirouette(void);

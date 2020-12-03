@@ -21,11 +21,12 @@
 #include "Communication.h"
 #include "ControleMoteur.h"
 #include "ControleVoile.h"
-/*#include "Moteur.h"
-#include "ServoMoteur.h"*/
+#include "Moteur.h"
+#include "ServoMoteur.h"
 
 void  SystemClock_Config(void);
 
+int toto ;
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -38,57 +39,13 @@ void  SystemClock_Config(void);
 //entier utilisé pour visualiser des valeurs lors des tests, à dégager
 int test;
 
-
-
-int main(void)
-{
-  /* Configure the system clock to 72 MHz */
-  SystemClock_Config();
-
-  /* Add your application code here */
-	confDriversMoteur();
-	confDriversVoile();	
-// tests des pwm output
-	/*setVitesse(1); // TIM2->CNT et (GPIOA->IDR & GPIO_IDR_IDR1)>>1
-	setCap('b');
-	//setCap('t');
-	setAngleVoile(90); // TIM4->CNT et (GPIOB->IDR & GPIO_IDR_IDR8)>>8
-	*/
-	
-  /* Infinite loop */
-  while (1)
-  {
-		reglerVoile();
-		reglerCap();
-		reglerVitesseMot();
-  }
-}
-
-
-void mainfinal(){
-	  /* Configure the system clock to 72 MHz */
-  SystemClock_Config();
-
-  /* Add your application code here */
-	confDriversMoteur();
-	confDriversVoile();	
-	
-  /* Infinite loop */
-  while (1)
-  {
-		reglerVoile();
-		reglerVitesseMot();
-		reglerCap();
-  }
-}
-
 void testServo(){
 	GPIOConfServo();
 	timerConfServo();
 	setAngleVoile(45);
 	setAngleVoile(0);
 	setAngleVoile(90);
-	setAngleVoile(0);
+	//setAngleVoile(0);
 }
 
 void testGirouette(){
@@ -113,6 +70,56 @@ void testVoile(){
 	confDriversVoile();
 	reglerVoile();
 }
+
+
+int main(void)
+{
+  /* Configure the system clock to 72 MHz */
+  SystemClock_Config();
+
+  /* Add your application code here */
+	confDriversMoteur();
+	confDriversVoile();	
+// tests des pwm output
+	//setVitesse(1); // TIM2->CNT et (GPIOA->IDR & GPIO_IDR_IDR1)>>1
+	//setCap('b');
+	//setCap('t');
+	//setAngleVoile(90); // TIM4->CNT et (GPIOB->IDR & GPIO_IDR_IDR8)>>8
+	
+	
+	//testServo();
+	//testGirouette();
+	//testAccelero();
+	
+  /* Infinite loop */
+  while (1)
+  {
+		//int i = 0;
+		reglerVoile();
+		reglerCap();
+		reglerVitesseMot();
+  }
+}
+
+
+void mainfinal(){
+	  /* Configure the system clock to 72 MHz */
+  SystemClock_Config();
+
+  /* Add your application code here */
+	confDriversMoteur();
+	confDriversVoile();	
+	
+  /* Infinite loop */
+  while (1)
+  {
+		reglerVoile();
+		reglerVitesseMot();
+		reglerCap();
+  }
+}
+
+
 
 
 
@@ -141,7 +148,7 @@ void SystemClock_Config(void)
   /* Enable HSE oscillator */
 	// ********* Commenter la ligne ci-dessous pour MCBSTM32 *****************
 	// ********* Conserver la ligne si Nucléo*********************************
- // LL_RCC_HSE_EnableBypass();
+	//LL_RCC_HSE_EnableBypass();
   LL_RCC_HSE_Enable();
   while(LL_RCC_HSE_IsReady() != 1)
   {

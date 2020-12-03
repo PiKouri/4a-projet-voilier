@@ -13,8 +13,11 @@ void reglerCap(void) {
 };
 
 void reglerVitesseMot(void) {
-	double vitesse = getVitesse() ;
-	setVitesse(vitesse);
+	float vitesse = getVitesse() ;
+	int vit = (int) vitesse;
+	if (vit>=10) vit = 10;
+	if (vit<=0) vit = 0;
+	setVitesse(vit);
 };
 
 
